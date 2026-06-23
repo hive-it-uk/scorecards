@@ -501,13 +501,15 @@ footer .meth-trigger:hover{color:#fff}
 .pc-score-box .pc-score-den { color: rgba(255,255,255,.65); font-size: .62rem; font-weight: 700; }
 
 .h1-hl{color:var(--saf);}
-/* ── HOSTING SCORECARD: cerise header — WCAG 2.2 AA ── */
-.mast{background:var(--cer);border-bottom-color:var(--ink)}
+/* ── HOSTING SCORECARD: saffron header — WCAG 2.2 AA ──────── */
+/* Ink on yellow = 11.60:1 ✓ all text. White = 1.58:1 ✗ unusable. */
+.mast{background:var(--saf);border-bottom-color:var(--ink)}
 .mast-top{border-bottom-color:rgba(14,20,40,.15)}
-.wordmark{color:var(--ink)}
+.mast-top svg path{fill:#000}
+.wordmark{color:#000}
 .mast-kicker{color:var(--ink)}
-.mast-h1{color:#fff}
-.mast-h1 .h1-hl{color:var(--ink)}
+.mast-h1{color:var(--ink)}
+.mast-h1 .h1-hl{color:var(--pal)}
 .mast-lede{color:var(--ink)}
 .mast-lede strong{color:var(--ink)}
 .footprint{background:rgba(14,20,40,.07);border-color:rgba(14,20,40,.2)}
@@ -528,9 +530,19 @@ footer .meth-trigger:hover{color:#fff}
 .mast-loc .loc-note{color:var(--ink)}
 .mast-loc .loc-btn{border-color:rgba(14,20,40,.3);color:var(--ink)}
 .mast-loc .loc-btn:hover{background:rgba(14,20,40,.1);color:var(--ink);border-color:rgba(14,20,40,.5)}
-.mast-loc .loc-btn[aria-pressed=true]{background:var(--ink)!important;color:#fff!important;border-color:var(--ink)!important}
-.loc-note{background:var(--cer);border-left-color:var(--ink);color:var(--ink)}
-/* ─────────────────────────────────────── */
+.mast-loc .loc-btn[aria-pressed=true]{background:var(--ink)!important;color:var(--saf)!important;border-color:var(--ink)!important}
+.loc-note{background:var(--saf);border-left-color:var(--ink);color:var(--ink)}
+/* ──────────────────────────────────────────────────────────── */
+
+/* ── GLOSSARY OVERLAY ───────────────────────────────────── */
+.gloss-section{font-family:var(--fhb);font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--pal);margin:1.5rem 0 .5rem;padding-bottom:.3rem;border-bottom:2px solid var(--pal)}
+.gloss-section:first-child{margin-top:.25rem}
+.gloss-list{margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:0}
+.gloss-list dt{font-family:var(--fh);font-weight:800;font-size:.82rem;color:var(--ink);margin:.75rem 0 .15rem;padding-left:.6rem;border-left:3px solid var(--saf)}
+.gloss-list dd{margin:0 0 0 .9rem;font-size:.8rem;color:rgba(14,20,40,.82);line-height:1.6}
+.gloss-list dd code{font-family:monospace;background:rgba(14,20,40,.06);padding:.05rem .3rem;border-radius:2px;font-size:.78rem}
+@media(min-width:640px){.gloss-list{grid-template-columns:1fr 1fr;column-gap:2rem}.gloss-section{grid-column:1/-1}}
+/* ─────────────────────────────────────────────────────────── */
 </style>
 </head>
 <body>
@@ -651,7 +663,7 @@ footer .meth-trigger:hover{color:#fff}
   </div>
  </div>
  <div id="ranklist"></div>
- <p class="cmp-note">Higher = more responsible. Military restraint: high score = stronger limits on harmful use. <button class="meth-trigger" onclick="openMeth()" type="button">Method →</button></p>
+ <p class="cmp-note">Higher = more responsible. Military restraint: high score = stronger limits on harmful use. <button class="meth-trigger" onclick="openMeth()" type="button">Method →</button> <button class="meth-trigger" onclick="openGlossary()" type="button">Glossary →</button></p>
 </section>
 
 <!-- COMPARE -->
@@ -710,6 +722,98 @@ footer .meth-trigger:hover{color:#fff}
  </div>
 </div>
 
+
+<!-- GLOSSARY OVERLAY -->
+<div id="gloss-overlay" class="meth-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gloss-title">
+ <div class="meth-panel" tabindex="-1">
+  <div class="meth-head">
+   <h2 id="gloss-title">Glossary</h2>
+   <button class="meth-close" id="gloss-close" aria-label="Close glossary">✕</button>
+  </div>
+  <div class="meth-body">
+   <p>Plain-English definitions for every term used in the cards, filters, and scoring.</p>
+
+   <h3 class="gloss-section">Score scale (0 – 4)</h3>
+   <dl class="gloss-list">
+    <dt>0 — No information</dt><dd>The provider has not disclosed anything meaningful on this topic. No information is treated as the worst outcome — the absence of transparency is itself a problem.</dd>
+    <dt>1 — Minimal</dt><dd>Very limited information or action; significant gaps remain.</dd>
+    <dt>2 — OK</dt><dd>Some information or action; meets a basic standard, but notable gaps still exist.</dd>
+    <dt>3 — Good</dt><dd>Solid, credible performance or disclosure; clearly above average for the sector.</dd>
+    <dt>4 — Leading</dt><dd>Best-in-class performance or disclosure for this criterion.</dd>
+   </dl>
+
+   <h3 class="gloss-section">Overall score bands (out of 100)</h3>
+   <dl class="gloss-list">
+    <dt>Leading — 80 to 100</dt><dd>Consistently strong across most criteria; genuine sector leadership.</dd>
+    <dt>Good — 60 to 79</dt><dd>Above average; clear strengths with some gaps.</dd>
+    <dt>OK — 40 to 59</dt><dd>Mixed performance; meaningful concerns alongside positives.</dd>
+    <dt>Poor — 0 to 39</dt><dd>Significant gaps or concerns across multiple criteria.</dd>
+   </dl>
+
+   <h3 class="gloss-section">Confidence levels</h3>
+   <dl class="gloss-list">
+    <dt>Verified</dt><dd>Independently confirmed by a third-party audit, ISO certification, regulatory finding, established watchdog, or court record. Most reliable. Applied as a multiplier of ×1.0.</dd>
+    <dt>Self-reported</dt><dd>Information comes from the provider's own disclosures — sustainability reports, website, press releases. Not independently confirmed. Multiplier ×0.75.</dd>
+    <dt>Estimated</dt><dd>Inferred from available evidence where the provider has not directly disclosed the relevant information. Multiplier ×0.5.</dd>
+    <dt>Unknown</dt><dd>No meaningful information found. Applied as a multiplier of ×0.0 — unknown is treated the same as zero when evidence quality adjustment is on.</dd>
+   </dl>
+
+   <h3 class="gloss-section">Provider types (card badges)</h3>
+   <dl class="gloss-list">
+    <dt>Hyperscaler</dt><dd>A very large cloud provider with global infrastructure and data centres in dozens of countries: Google Cloud, AWS, Microsoft Azure. Shown with a yellow highlight.</dd>
+    <dt>Independent</dt><dd>A privately owned provider operating outside Big Tech — typically regional or specialist. Includes European and UK independents such as Hetzner, Infomaniak, and Katapult.</dd>
+    <dt>Corporate / Non-independent</dt><dd>A sizeable corporate provider that is neither a hyperscaler nor an independent. Currently: DigitalOcean.</dd>
+   </dl>
+
+   <h3 class="gloss-section">Filters and controls</h3>
+   <dl class="gloss-list">
+    <dt>Adjust for evidence quality</dt><dd>Applies confidence multipliers to scores before calculating the overall result. On by default. Turn it off to see raw scores without adjustment — useful for comparing what providers claim versus what is independently confirmed.</dd>
+    <dt>Pillar weights</dt><dd>Sliders that change how much each of the three scoring domains (Environmental, Social, Governance) counts toward the overall score. Set all to 1.0 for equal weighting, or raise one to emphasise it.</dd>
+    <dt>Provider type filter</dt><dd>Limits the ranking to a specific provider category. "Hyperscaler" shows only the three largest cloud platforms; "Independent" shows privately owned regional providers.</dd>
+    <dt>Your location</dt><dd>Switches jurisdiction context between UK, EU, and US. Affects privacy (data sovereignty) and, for some providers, carbon scores — because the data centre serving you depends on where you are.</dd>
+    <dt>Red flag badge</dt><dd>A serious verified concern — such as a court finding, regulatory sanction, or credible watchdog report — that caps the provider's overall score regardless of other criteria. None of the 14 providers on this list currently carries a red flag.</dd>
+   </dl>
+
+   <h3 class="gloss-section">Per-unit efficiency (the dots on each card)</h3>
+   <dl class="gloss-list">
+    <dt>Not disclosed</dt><dd>No per-unit infrastructure efficiency data has been published.</dd>
+    <dt>Limited data</dt><dd>Minimal figures available — for example, a single metric with no methodology.</dd>
+    <dt>Partial</dt><dd>Some efficiency figures published, but coverage is incomplete.</dd>
+    <dt>Measured</dt><dd>Detailed self-reported figures with a disclosed methodology.</dd>
+    <dt>Peer-reviewed</dt><dd>Per-unit figures are independently verified or published in a peer-reviewed context.</dd>
+   </dl>
+
+   <h3 class="gloss-section">Acronyms and abbreviations</h3>
+   <dl class="gloss-list">
+    <dt>B Corp</dt><dd>Certified B Corporation. An independent certification from B Lab that verifies a company meets standards of social and environmental performance, accountability, and transparency.</dd>
+    <dt>BSI</dt><dd>British Standards Institution. A UK-based independent body that carries out ISO audits and certifications.</dd>
+    <dt>Carbon neutral</dt><dd>Net zero carbon emissions for a defined scope, achieved by a combination of reduction and verified offsets.</dd>
+    <dt>Climate positive / Carbon negative</dt><dd>Removes more carbon from the atmosphere than it emits — a stronger claim than carbon neutral.</dd>
+    <dt>CFE</dt><dd>Carbon-free Energy. Energy from sources that produce no direct carbon emissions, including renewables (wind, solar, hydro) and nuclear.</dd>
+    <dt>CLOUD Act</dt><dd>Clarifying Lawful Overseas Use of Data Act (US, 2018). Allows US authorities to demand data from US-owned companies regardless of where that data is physically stored. Applies to AWS (Amazon), Google Cloud, and Microsoft Azure.</dd>
+    <dt>Colocation (colo)</dt><dd>A data centre where a provider rents space, power, and connectivity rather than owning the building. The host controls the servers; the facility operator controls the building.</dd>
+    <dt>CSRD</dt><dd>Corporate Sustainability Reporting Directive (EU). Requires large companies to disclose environmental and social impact under standardised rules. Came into force from 2024.</dd>
+    <dt>ERF</dt><dd>Energy Recovery Factor. The proportion of a data centre's total energy input that is recovered and reused — for example, as heat for nearby homes or swimming pools. An ERF of 0.95 means 95% of energy is reused.</dd>
+    <dt>GCP</dt><dd>Google Cloud Platform. The cloud infrastructure and hosting services sold by Google.</dd>
+    <dt>GDPR / UK GDPR</dt><dd>General Data Protection Regulation. EU law (GDPR) and UK equivalent (UK GDPR) governing how personal data is collected, stored, and used. The EU-UK adequacy decision currently allows transfers between the two.</dd>
+    <dt>GWF</dt><dd>Green Web Foundation. An independent non-profit that verifies hosting providers' renewable energy claims and publishes results publicly at thegreenwebfoundation.org.</dd>
+    <dt>ISO 14001</dt><dd>International standard for environmental management systems. Requires organisations to identify and control their environmental impact.</dd>
+    <dt>ISO 14068-1</dt><dd>International standard for carbon neutrality claims and methodology (published 2023). Stricter than earlier frameworks; requires third-party verification.</dd>
+    <dt>ISO 27001</dt><dd>International standard for information security management. Covers how organisations protect data.</dd>
+    <dt>LCA</dt><dd>Life Cycle Assessment. A methodology for measuring the environmental impact of a product or service across its full life — from manufacture through use to disposal. Governed by ISO 14040/44.</dd>
+    <dt>LEED</dt><dd>Leadership in Energy and Environmental Design. A US-originated green building certification for energy-efficient, low-impact facilities.</dd>
+    <dt>PUE</dt><dd>Power Usage Effectiveness. The ratio of total data centre power draw to the power actually used by IT equipment. A PUE of 1.0 is perfect (no overhead). Industry average is around 1.56; best-in-class data centres achieve 1.06–1.10.</dd>
+    <dt>REGO</dt><dd>Renewable Energy Guarantee of Origin. A UK certificate that proves a unit of electricity came from a renewable source. Quality varies — some REGOs are traded separately from the actual electricity.</dd>
+    <dt>RMAP</dt><dd>Responsible Minerals Assurance Process. An industry audit programme for the ethical sourcing of minerals — particularly 3TG (tin, tantalum, tungsten, gold) from conflict-affected regions.</dd>
+    <dt>SBTi</dt><dd>Science Based Targets initiative. An independent body that validates corporate emissions reduction targets to ensure they align with climate science (the Paris Agreement).</dd>
+    <dt>Scope 1 emissions</dt><dd>Direct greenhouse gas emissions from sources owned or controlled by the organisation — for example, on-site generators or company vehicles.</dd>
+    <dt>Scope 2 emissions</dt><dd>Indirect emissions from purchased energy — electricity, heat, or cooling bought from external suppliers.</dd>
+    <dt>Scope 3 emissions</dt><dd>All other indirect emissions in the value chain — including hardware manufacture, supply chain, employee travel, and the emissions caused by customers using the service.</dd>
+    <dt>WUE</dt><dd>Water Usage Effectiveness. Litres of water consumed per kilowatt-hour of IT equipment power. Lower is better. A WUE near zero indicates air or adiabatic cooling with no evaporative water loss.</dd>
+   </dl>
+  </div>
+ </div>
+</div>
 
 <!-- ETHICS FRAMEWORK OVERLAY -->
 <div id="fw-overlay" class="fw-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="fw-title">
@@ -2043,6 +2147,22 @@ function closeFw(){
   ov.querySelector(".fw-panel").classList.remove("open");
   if(fwLastFocus) fwLastFocus.focus();
 }
+let glossLastFocus = null;
+function openGlossary(){
+  glossLastFocus = document.activeElement;
+  const ov = document.getElementById("gloss-overlay");
+  ov.classList.add("open");
+  ov.setAttribute("aria-hidden","false");
+  ov.querySelector(".meth-panel").classList.add("open");
+  document.getElementById("gloss-close").focus();
+}
+function closeGlossary(){
+  const ov = document.getElementById("gloss-overlay");
+  ov.classList.remove("open");
+  ov.setAttribute("aria-hidden","true");
+  ov.querySelector(".meth-panel").classList.remove("open");
+  if(glossLastFocus) glossLastFocus.focus();
+}
 
 
 
@@ -2073,9 +2193,12 @@ window.addEventListener("DOMContentLoaded",()=>{
   document.getElementById("meth-overlay")?.addEventListener("click",e=>{if(e.target.id==="meth-overlay")closeMeth();});
   document.getElementById("fw-close")?.addEventListener("click", closeFw);
   document.getElementById("fw-overlay")?.addEventListener("click", e=>{ if(e.target.id==="fw-overlay") closeFw(); });
+  document.getElementById("gloss-close")?.addEventListener("click", closeGlossary);
+  document.getElementById("gloss-overlay")?.addEventListener("click", e=>{ if(e.target.id==="gloss-overlay") closeGlossary(); });
   document.addEventListener("keydown",e=>{
     if(e.key==="Escape"){
-      if(document.getElementById("fw-overlay").classList.contains("open")) closeFw();
+      if(document.getElementById("gloss-overlay").classList.contains("open")) closeGlossary();
+      else if(document.getElementById("fw-overlay").classList.contains("open")) closeFw();
       else if(document.getElementById("meth-overlay").classList.contains("open")) closeMeth();
       else if(document.getElementById("modal").classList.contains("open")) closeModal();
     }
