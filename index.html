@@ -1,151 +1,272 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pages in this folder</title>
 <style>
-  :root {
-    --ink: #1a1c2c;
-    --paper: #f7f4ee;
-    --card: #fffdf8;
-    --rule: #c7bfae;
-    --accent: #3a5a40;
-    --accent-ink: #ffffff;
-    --muted: #5c5848;
-    --focus: #1a4fcf;
-    --shadow: 0 1px 2px rgba(26,28,44,.08), 0 4px 12px rgba(26,28,44,.06);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #ece7da;
-      --paper: #16181f;
-      --card: #1e2129;
-      --rule: #3a3d48;
-      --accent: #7fb685;
-      --accent-ink: #16181f;
-      --muted: #a39e8e;
-      --focus: #8ab4ff;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 4px 12px rgba(0,0,0,.3);
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-    line-height: 1.5;
-    padding: 2rem 1.25rem 4rem;
-  }
-  .wrap { max-width: 60rem; margin: 0 auto; }
-  header { border-bottom: 2px solid var(--rule); padding-bottom: 1rem; margin-bottom: 1.75rem; }
-  .eyebrow {
-    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--muted); margin: 0 0 0.35rem;
-  }
-  h1 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700;
-    margin: 0; line-height: 1.15; word-break: break-word;
-  }
-  .count { color: var(--muted); font-size: 0.9rem; margin: 0.5rem 0 0; }
+@import url('https://fonts.googleapis.com/css2?family=Nexa:wght@400;700;900&display=swap');
 
-  ul.grid {
-    list-style: none; margin: 0; padding: 0;
-    display: grid; gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  }
-  li { display: flex; }
-  a.card {
-    display: flex; flex-direction: column; gap: 0.6rem;
-    width: 100%;
-    padding: 1.1rem 1.1rem 1.2rem;
-    background: var(--card);
-    border: 1px solid var(--rule);
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    text-decoration: none;
-    color: var(--ink);
-    transition: transform .12s ease, border-color .12s ease;
-  }
-  a.card:hover { transform: translateY(-2px); border-color: var(--accent); }
-  a.card:hover .name { text-decoration: underline; }
-  a.card:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
-  @media (prefers-reduced-motion: reduce) {
-    a.card { transition: none; }
-    a.card:hover { transform: none; }
-  }
-  .tag {
-    align-self: flex-start;
-    font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 0.18rem 0.55rem; border-radius: 999px;
-    background: var(--accent); color: var(--accent-ink);
-  }
-  .tag.dir { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-  .name {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.15rem; font-weight: 700; word-break: break-word; line-height: 1.25;
-  }
-  .filename { color: var(--muted); font-size: 0.82rem; margin: 0; }
-  .meta     { color: var(--muted); font-size: 0.82rem; margin: 0; }
+:root {
+  --oxb:  #0e1428;
+  --saf:  #ffc600;
+  --grn:  #1c7c54;
+  --grn2: #155e3f;
+  --ppr:  #efe9e7;
+  --wht:  #ffffff;
+  --ink:  #0e1428;
+  --bdr:  3px solid var(--ink);
+  --shadow: 4px 4px 0 var(--ink);
+  --W: 1200px;
+  --pad: clamp(1rem, 3vw, 2rem);
+}
 
-  .status { padding: 1.25rem 0; color: var(--muted); }
-  .status[role="alert"] { color: var(--ink); }
-  .skip {
-    position: absolute; left: -9999px; top: 0;
-    background: var(--accent); color: var(--accent-ink);
-    padding: 0.5rem 1rem; z-index: 10;
-  }
-  .skip:focus { left: 0.5rem; top: 0.5rem; }
-  code {
-    background: color-mix(in srgb, var(--ink) 8%, transparent);
-    padding: 0.1rem 0.35rem; border-radius: 3px;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Nexa", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--ppr);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ---- skip link ---- */
+.skip {
+  position: absolute; left: 0; top: -100px;
+  background: var(--saf); color: var(--ink);
+  padding: .5rem 1rem; font-size: .8rem; font-weight: 800;
+  text-decoration: none; z-index: 1000;
+  border-bottom: var(--bdr);
+}
+.skip:focus { top: 0; }
+
+/* ---- masthead ---- */
+.mast {
+  background: var(--grn);
+  border-bottom: var(--bdr);
+}
+.mast-inner {
+  max-width: var(--W);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+.mast-body {
+  padding: 1.5rem 0 1.75rem;
+}
+.mast-kicker {
+  font-size: .7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--saf);
+  margin-bottom: .4rem;
+  display: block;
+}
+.mast-h1 {
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  font-weight: 900;
+  color: var(--wht);
+  line-height: 1;
+  letter-spacing: -.01em;
+  margin: 0 0 .6rem;
+}
+.mast-count {
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.65);
+}
+.mast-count[aria-live] { display: block; min-height: 1.1em; }
+
+/* ---- section headings ---- */
+.section-hdr {
+  max-width: var(--W);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .35rem;
+  border-bottom: var(--bdr);
+  margin-top: 1.5rem;
+  padding-bottom: .4rem;
+}
+.section-hdr h2 {
+  font-size: .9rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--ink);
+}
+.section-count {
+  font-size: .68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: rgba(14,20,40,.55);
+}
+
+/* ---- grid ---- */
+.grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1.25rem;
+  max-width: var(--W);
+  margin: 0 auto;
+  padding: 1.25rem var(--pad) 0;
+}
+.grid:last-of-type { padding-bottom: 3rem; }
+
+/* ---- card ---- */
+li { display: flex; }
+a.card {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  width: 100%;
+  padding: 1rem 1rem 1.1rem;
+  background: var(--wht);
+  border: var(--bdr);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--ink);
+  transition: box-shadow .08s ease, transform .08s ease;
+}
+a.card:hover {
+  box-shadow: 6px 6px 0 var(--ink);
+  transform: translate(-1px, -1px);
+}
+a.card:hover .card-name { text-decoration: underline; }
+a.card:focus-visible {
+  outline: 3px solid var(--saf);
+  outline-offset: 2px;
+  box-shadow: var(--shadow);
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  a.card { transition: none; }
+  a.card:hover { box-shadow: var(--shadow); transform: none; }
+}
+
+.card-tag {
+  align-self: flex-start;
+  font-size: .62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  padding: .18rem .55rem;
+  background: var(--grn);
+  color: var(--saf);
+}
+.card-tag.dir {
+  background: transparent;
+  color: var(--grn);
+  border: 2px solid var(--grn);
+}
+.card-name {
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+  word-break: break-word;
+}
+.card-filename {
+  font-size: .72rem;
+  color: rgba(14,20,40,.55);
+  font-weight: 700;
+  word-break: break-all;
+}
+.card-size {
+  font-size: .7rem;
+  color: rgba(14,20,40,.45);
+  font-weight: 700;
+}
+
+/* ---- status / loading ---- */
+.status {
+  max-width: var(--W);
+  margin: 2rem auto;
+  padding: 0 var(--pad);
+  font-size: .9rem;
+  color: rgba(14,20,40,.65);
+}
+.status[role="alert"] { color: var(--ink); }
+code {
+  font-family: ui-monospace, monospace;
+  font-size: .85em;
+  background: rgba(14,20,40,.07);
+  padding: .1rem .35rem;
+}
 </style>
 </head>
 <body>
 <a class="skip" href="#listing">Skip to file list</a>
-<div class="wrap">
-  <header>
-    <p class="eyebrow">Index of this folder</p>
-    <h1 id="title">Pages in this folder</h1>
-    <p class="count" id="count" aria-live="polite"></p>
-  </header>
 
-  <main>
-    <nav id="listing" aria-labelledby="title">
-      <p class="status" id="status" role="status">Loading folder contents&hellip;</p>
-      <ul class="grid" id="list" hidden></ul>
-    </nav>
-  </main>
-</div>
+<header class="mast">
+  <div class="mast-inner">
+    <div class="mast-body">
+      <span class="mast-kicker">Index of this folder</span>
+      <h1 class="mast-h1" id="page-title">Pages in this folder</h1>
+      <span class="mast-count" id="total-count" aria-live="polite"></span>
+    </div>
+  </div>
+</header>
+
+<main id="listing" tabindex="-1">
+  <p class="status" id="status" role="status">Loading folder contents&hellip;</p>
+
+  <!-- Scorecards section -->
+  <div id="scorecards-section" hidden>
+    <div class="section-hdr">
+      <h2>Scorecards</h2>
+      <span class="section-count" id="scorecards-count"></span>
+    </div>
+    <ul class="grid" id="scorecards-list" aria-label="Scorecards"></ul>
+  </div>
+
+  <!-- Documentation section -->
+  <div id="docs-section" hidden>
+    <div class="section-hdr">
+      <h2>Documentation</h2>
+      <span class="section-count" id="docs-count"></span>
+    </div>
+    <ul class="grid" id="docs-list" aria-label="Documentation"></ul>
+  </div>
+</main>
 
 <script>
 (function () {
   "use strict";
 
-  // ---- Repo config ----
   var OWNER  = "martsky-mart";
   var REPO   = "ethics-and-environment";
-  var FOLDER = ""; // "" = repo root; set to e.g. "pages" if file lives in a subfolder
+  var FOLDER = "";
 
-  var listEl   = document.getElementById("list");
-  var statusEl = document.getElementById("status");
-  var countEl  = document.getElementById("count");
+  var statusEl      = document.getElementById("status");
+  var totalCountEl  = document.getElementById("total-count");
+
+  var scorecardsSection = document.getElementById("scorecards-section");
+  var scorecardsCount   = document.getElementById("scorecards-count");
+  var scorecardsListEl  = document.getElementById("scorecards-list");
+
+  var docsSection = document.getElementById("docs-section");
+  var docsCount   = document.getElementById("docs-count");
+  var docsListEl  = document.getElementById("docs-list");
 
   var selfName = (location.pathname.split("/").pop() || "").toLowerCase();
   var IGNORE   = ["index.html", "index.htm", selfName, ""];
-
   var HTML_EXTS = ["html", "htm"];
 
   function ext(name) {
     return (name.split(".").pop() || "").toLowerCase();
   }
-
-  function isHtml(name) {
-    return HTML_EXTS.indexOf(ext(name)) !== -1;
-  }
+  function isHtml(name) { return HTML_EXTS.indexOf(ext(name)) !== -1; }
 
   function formatSize(bytes) {
     if (bytes == null) return "";
@@ -158,151 +279,148 @@
   function classify(name, isDir) {
     if (isDir) return "Folder";
     var map = {
-      html:"Page", htm:"Page",
-      pdf:"PDF", txt:"Text", md:"Markdown",
-      css:"Stylesheet", js:"Script",
+      html:"Page", htm:"Page", pdf:"PDF", txt:"Text", md:"Markdown",
+      css:"CSS", js:"Script",
       png:"Image", jpg:"Image", jpeg:"Image", gif:"Image", svg:"Image", webp:"Image",
       json:"Data", csv:"Data", xml:"Data"
     };
     return map[ext(name)] || "File";
   }
 
-  // Fetch the raw HTML file from the GitHub raw CDN and extract <title>.
-  // Resolves to the title string, or null if unavailable.
   function fetchTitle(rawUrl) {
     return fetch(rawUrl)
-      .then(function (r) {
-        if (!r.ok) return null;
-        return r.text();
-      })
-      .then(function (html) {
+      .then(function(r) { return r.ok ? r.text() : null; })
+      .then(function(html) {
         if (!html) return null;
-        // Parse only the <head> for speed — stop after </head> if present.
-        var head = html;
         var headEnd = html.toLowerCase().indexOf("</head>");
-        if (headEnd !== -1) head = html.slice(0, headEnd);
-        var doc   = new DOMParser().parseFromString(head + "</head><body></body></html>", "text/html");
-        var el    = doc.querySelector("title");
-        var title = el ? el.textContent.trim() : null;
-        return title || null;
+        var head = headEnd !== -1 ? html.slice(0, headEnd) : html;
+        var doc = new DOMParser().parseFromString(head + "</head><body></body></html>", "text/html");
+        var el = doc.querySelector("title");
+        var t = el ? el.textContent.trim() : null;
+        return t || null;
       })
-      .catch(function () { return null; });
+      .catch(function() { return null; });
+  }
+
+  function makeCard(e) {
+    var li = document.createElement("li");
+    var a  = document.createElement("a");
+    a.className = "card";
+    a.href      = e.href;
+
+    var tag = document.createElement("span");
+    tag.className = "card-tag" + (e.isDir ? " dir" : "");
+    tag.setAttribute("aria-hidden", "true");
+    tag.textContent = e.kind;
+
+    var name = document.createElement("span");
+    name.className   = "card-name";
+    name.textContent = e.displayName;
+
+    var label = e.displayName + ", " + e.kind;
+    if (e.size) label += ", " + e.size;
+    a.setAttribute("aria-label", label);
+
+    a.appendChild(tag);
+    a.appendChild(name);
+
+    if (e.title && e.name !== e.displayName) {
+      var fn = document.createElement("span");
+      fn.className = "card-filename";
+      fn.setAttribute("aria-hidden", "true");
+      fn.textContent = e.name;
+      a.appendChild(fn);
+    }
+
+    if (e.size) {
+      var sz = document.createElement("span");
+      sz.className = "card-size";
+      sz.setAttribute("aria-hidden", "true");
+      sz.textContent = e.size;
+      a.appendChild(sz);
+    }
+
+    li.appendChild(a);
+    return li;
+  }
+
+  function renderSection(entries, listEl, sectionEl, countEl, sectionLabel) {
+    if (!entries.length) return;
+    entries.sort(function(a, b) {
+      var ad = a.isDir ? 0 : 1, bd = b.isDir ? 0 : 1;
+      if (ad !== bd) return ad - bd;
+      return a.displayName.toLowerCase().localeCompare(b.displayName.toLowerCase());
+    });
+    var frag = document.createDocumentFragment();
+    entries.forEach(function(e) { frag.appendChild(makeCard(e)); });
+    listEl.appendChild(frag);
+    var n = entries.length;
+    countEl.textContent = n + (n === 1 ? " item" : " items");
+    sectionEl.hidden = false;
   }
 
   function render(entries) {
     if (!entries.length) {
       statusEl.textContent = "No linkable pages were found in this folder.";
-      countEl.textContent  = "";
       return;
     }
 
-    entries.sort(function (a, b) {
-      var ad = a.isDir ? 0 : 1, bd = b.isDir ? 0 : 1;
-      if (ad !== bd) return ad - bd;
-      // Sort by display label (title if resolved, otherwise filename), case-insensitive.
-      return a.displayName.toLowerCase().localeCompare(b.displayName.toLowerCase());
-    });
+    var scorecards = entries.filter(function(e) { return isHtml(e.name); });
+    var docs       = entries.filter(function(e) { return !isHtml(e.name); });
 
-    var frag = document.createDocumentFragment();
-    entries.forEach(function (e) {
-      var li = document.createElement("li");
-      var a  = document.createElement("a");
-      a.className = "card";
-      a.href      = e.href;
-
-      var tag = document.createElement("span");
-      tag.className = "tag" + (e.isDir ? " dir" : "");
-      tag.setAttribute("aria-hidden", "true");
-      tag.textContent = e.kind;
-
-      var name = document.createElement("span");
-      name.className   = "name";
-      name.textContent = e.displayName;
-
-      // Accessible name always includes the kind, plus size if known.
-      a.setAttribute("aria-label",
-        e.displayName + ", " + e.kind + (e.size ? ", " + e.size : ""));
-
-      a.appendChild(tag);
-      a.appendChild(name);
-
-      // If we resolved a title, show the raw filename as secondary metadata.
-      if (e.title && e.name !== e.displayName) {
-        var fn = document.createElement("p");
-        fn.className = "filename";
-        fn.setAttribute("aria-hidden", "true");
-        fn.textContent = e.name;
-        a.appendChild(fn);
-      }
-
-      if (e.size) {
-        var meta = document.createElement("p");
-        meta.className = "meta";
-        meta.setAttribute("aria-hidden", "true");
-        meta.textContent = e.size;
-        a.appendChild(meta);
-      }
-
-      li.appendChild(a);
-      frag.appendChild(li);
-    });
-
-    listEl.appendChild(frag);
-    listEl.hidden   = false;
     statusEl.hidden = true;
 
-    var n = entries.length;
-    countEl.textContent = n + (n === 1 ? " item" : " items");
+    renderSection(scorecards, scorecardsListEl, scorecardsSection, scorecardsCount, "Scorecards");
+    renderSection(docs,       docsListEl,       docsSection,       docsCount,       "Documentation");
+
+    var total = entries.length;
+    totalCountEl.textContent = total + (total === 1 ? " item" : " items");
   }
 
-  function fail(msg, isHtml) {
+  function fail(msg, isHtmlMsg) {
     statusEl.setAttribute("role", "alert");
-    if (isHtml) statusEl.innerHTML = msg; else statusEl.textContent = msg;
+    if (isHtmlMsg) statusEl.innerHTML = msg; else statusEl.textContent = msg;
   }
 
-  // ---- GitHub Contents API ----
   var repoBase     = "https://api.github.com/repos/" + OWNER + "/" + REPO;
   var contentsPath = FOLDER ? FOLDER.replace(/\/$/, "") : "";
 
   fetch(repoBase)
-    .then(function (r) {
+    .then(function(r) {
       if (!r.ok) throw new Error("repo-" + r.status);
       return r.json();
     })
-    .then(function (info) {
+    .then(function(info) {
       var branch = encodeURIComponent(info.default_branch);
-      var url    = repoBase + "/contents/" + contentsPath + "?ref=" + branch;
-      // Stash branch on info so we can build raw URLs later.
-      return fetch(url).then(function (r) {
-        return r.json().then(function (items) {
+      var url = repoBase + "/contents/" + contentsPath + "?ref=" + branch;
+      return fetch(url).then(function(r) {
+        return r.json().then(function(items) {
           return { items: items, branch: info.default_branch, status: r.status };
         });
       });
     })
-    .then(function (payload) {
+    .then(function(payload) {
       if (payload.status === 403) throw new Error("ratelimit");
       if (payload.status === 404) throw new Error("notfound");
       if (!Array.isArray(payload.items)) throw new Error("unexpected");
 
-      var branch  = payload.branch;
+      var branch = payload.branch;
       var entries = [];
 
-      payload.items.forEach(function (it) {
-        var nm    = it.name;
-        var lower = nm.toLowerCase();
-        if (IGNORE.indexOf(lower) !== -1) return;
-        if (lower.charAt(0) === ".") return;
+      payload.items.forEach(function(it) {
+        var nm = it.name, lower = nm.toLowerCase();
+        if (IGNORE.indexOf(lower) !== -1 || lower.charAt(0) === ".") return;
         var dir = it.type === "dir";
         entries.push({
-          href:        dir ? "./" + encodeURIComponent(nm) + "/" : "./" + encodeURIComponent(nm),
+          href: dir
+            ? "./" + encodeURIComponent(nm) + "/"
+            : "./" + encodeURIComponent(nm),
           name:        nm,
-          label:       nm,
-          displayName: nm,  // will be updated if we find a <title>
+          displayName: nm,
           title:       null,
           isDir:       dir,
           kind:        classify(nm, dir),
           size:        dir ? "" : formatSize(it.size),
-          // Raw content URL for HTML files — used to extract <title>.
           rawUrl: (!dir && isHtml(nm))
             ? "https://raw.githubusercontent.com/" + OWNER + "/" + REPO + "/" +
               branch + "/" + (contentsPath ? contentsPath + "/" : "") + encodeURIComponent(nm)
@@ -310,37 +428,28 @@
         });
       });
 
-      // Fetch titles for all HTML entries in parallel.
-      var titleFetches = entries.map(function (e) {
-        if (!e.rawUrl) return Promise.resolve(null);
-        return fetchTitle(e.rawUrl);
+      var titleFetches = entries.map(function(e) {
+        return e.rawUrl ? fetchTitle(e.rawUrl) : Promise.resolve(null);
       });
 
-      return Promise.all(titleFetches).then(function (titles) {
-        titles.forEach(function (title, i) {
-          if (title) {
-            entries[i].title       = title;
-            entries[i].displayName = title;
-          }
+      return Promise.all(titleFetches).then(function(titles) {
+        titles.forEach(function(title, i) {
+          if (title) { entries[i].title = title; entries[i].displayName = title; }
         });
         return entries;
       });
     })
     .then(render)
-    .catch(function (err) {
+    .catch(function(err) {
       var msg = err.message || "";
       if (msg === "ratelimit") {
-        fail("The GitHub API rate limit has been reached (60 requests/hour per IP). " +
-          "Wait a minute and reload.");
+        fail("The GitHub API rate limit has been reached. Wait a minute and reload.");
       } else if (msg === "notfound") {
-        fail("Couldn\u2019t find the repo or folder at " +
-          "<code>" + OWNER + "/" + REPO + (FOLDER ? "/" + FOLDER : "") + "</code>. " +
-          "Check the repo exists and is public.", true);
+        fail("Couldn\u2019t find <code>" + OWNER + "/" + REPO + "</code>. Check the repo exists and is public.", true);
       } else if (/^repo-/.test(msg)) {
-        fail("Couldn\u2019t reach the GitHub API (status " + msg.replace("repo-","") + "). " +
-          "Check that <code>" + OWNER + "/" + REPO + "</code> is public.", true);
+        fail("Couldn\u2019t reach the GitHub API (status " + msg.replace("repo-","") + "). Check <code>" + OWNER + "/" + REPO + "</code> is public.", true);
       } else {
-        fail("Couldn\u2019t load the folder contents: " + msg);
+        fail("Couldn\u2019t load folder contents: " + msg);
       }
     });
 })();
