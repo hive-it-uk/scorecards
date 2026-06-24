@@ -193,6 +193,21 @@ a.card:focus-visible {
   line-height: 1.45;
   font-weight: 400;
 }
+.card-dates {
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+  margin-top: auto;
+  padding-top: .4rem;
+  border-top: 1.5px solid rgba(14,20,40,.1);
+  font-size: .66rem;
+  font-weight: 700;
+  color: rgba(14,20,40,.45);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.card-dates span { display: block; }
+.card-dates strong { color: rgba(14,20,40,.65); font-weight: 800; }
 
 /* ---- status / loading ---- */
 .status {
@@ -311,7 +326,46 @@ code {
       .catch(function() { return { title: null, desc: null }; });
   }
 
-  function makeCard(e) {
+  function fetchFileDates(branch, filePath) {
+    var base = repoBase + "/commits?sha=" + encodeURIComponent(branch) +
+               "&path=" + encodeURIComponent(filePath) + "&per_page=100";
+    function fetchOldest(u, oldest) {
+      return fetch(u).then(function(r) {
+        if (!r.ok) return oldest;
+        return r.json().then(function(commits) {
+          if (!commits.length) return oldest;
+          var last = commits[commits.length - 1];
+          var lastDt = last.commit && last.commit.committer && last.commit.committer.date || oldest;
+          var link = r.headers.get("Link") || "";
+          var next = link.match(/<([^>]+)>;\s*rel="next"/);
+          if (next) return fetchOldest(next[1], lastDt);
+          return lastDt;
+        });
+      }).catch(function() { return oldest; });
+    }
+    var modifiedP = fetch(base).then(function(r) {
+      if (!r.ok) return null;
+      return r.json().then(function(commits) {
+        if (!commits.length) return null;
+        var c = commits[0];
+        return c.commit && c.commit.committer && c.commit.committer.date || null;
+      });
+    }).catch(function() { return null; });
+    var createdP = fetchOldest(base, null);
+    return Promise.all([modifiedP, createdP]).then(function(res) {
+      return { modified: res[0], created: res[1] };
+    });
+  }
+
+  function fmtDate(iso) {
+    if (!iso) return null;
+    var d = new Date(iso);
+    return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) +
+           "\u2009\u00b7\u2009" +
+           d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+  }
+
+
     var li = document.createElement("li");
     var a  = document.createElement("a");
     a.className = "card";
@@ -354,6 +408,25 @@ code {
       sz.setAttribute("aria-hidden", "true");
       sz.textContent = e.size;
       a.appendChild(sz);
+    }
+
+    if (e.modified || e.created) {
+      var dates = document.createElement("div");
+      dates.className = "card-dates";
+      dates.setAttribute("aria-label",
+        (e.modified ? "Last modified " + fmtDate(e.modified) + ". " : "") +
+        (e.created  ? "Created " + fmtDate(e.created) + "." : ""));
+      if (e.modified) {
+        var mod = document.createElement("span");
+        mod.innerHTML = "Modified\u2002<strong>" + fmtDate(e.modified) + "</strong>";
+        dates.appendChild(mod);
+      }
+      if (e.created && e.created !== e.modified) {
+        var cre = document.createElement("span");
+        cre.innerHTML = "Created\u2002<strong>" + fmtDate(e.created) + "</strong>";
+        dates.appendChild(cre);
+      }
+      a.appendChild(dates);
     }
 
     li.appendChild(a);
@@ -435,6 +508,8 @@ code {
           displayName: nm,
           title:       null,
           desc:        null,
+          created:     null,
+          modified:    null,
           isDir:       dir,
           kind:        classify(nm, dir),
           size:        dir ? "" : formatSize(it.size),
@@ -449,10 +524,20 @@ code {
         return e.rawUrl ? fetchMeta(e.rawUrl) : Promise.resolve({ title: null, desc: null });
       });
 
-      return Promise.all(metaFetches).then(function(metas) {
+      var dateFetches = entries.map(function(e) {
+        var filePath = (contentsPath ? contentsPath + "/" : "") + e.name;
+        return fetchFileDates(branch, filePath);
+      });
+
+      return Promise.all([Promise.all(metaFetches), Promise.all(dateFetches)]).then(function(results) {
+        var metas = results[0];
+        var dates = results[1];
         metas.forEach(function(m, i) {
           if (m.title) { entries[i].title = m.title; entries[i].displayName = m.title; }
           if (m.desc)  { entries[i].desc = m.desc; }
+        });
+        dates.forEach(function(d, i) {
+          if (d) { entries[i].created = d.created; entries[i].modified = d.modified; }
         });
         return entries;
       });
