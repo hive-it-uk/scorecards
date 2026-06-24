@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pages in this folder</title>
+<style>
+  :root {
+    --ink: #1a1c2c;
+    --paper: #f7f4ee;
+    --card: #fffdf8;
+    --rule: #c7bfae;
+    --accent: #3a5a40;
+    --accent-ink: #ffffff;
+    --muted: #5c5848;
+    --focus: #1a4fcf;
+    --shadow: 0 1px 2px rgba(26,28,44,.08), 0 4px 12px rgba(26,28,44,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #ece7da;
+      --paper: #16181f;
+      --card: #1e2129;
+      --rule: #3a3d48;
+      --accent: #7fb685;
+      --accent-ink: #16181f;
+      --muted: #a39e8e;
+      --focus: #8ab4ff;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 4px 12px rgba(0,0,0,.3);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    line-height: 1.5;
+    padding: 2rem 1.25rem 4rem;
+  }
+  .wrap { max-width: 60rem; margin: 0 auto; }
+  header { border-bottom: 2px solid var(--rule); padding-bottom: 1rem; margin-bottom: 1.75rem; }
+  .eyebrow {
+    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 0.35rem;
+  }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700;
+    margin: 0; line-height: 1.15; word-break: break-word;
+  }
+  .count { color: var(--muted); font-size: 0.9rem; margin: 0.5rem 0 0; }
+
+  ul.grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  }
+  li { display: flex; }
+  a.card {
+    display: flex; flex-direction: column; gap: 0.6rem;
+    width: 100%;
+    padding: 1.1rem 1.1rem 1.2rem;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform .12s ease, border-color .12s ease;
+  }
+  a.card:hover { transform: translateY(-2px); border-color: var(--accent); }
+  a.card:hover .name { text-decoration: underline; }
+  a.card:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    a.card { transition: none; }
+    a.card:hover { transform: none; }
+  }
+  .tag {
+    align-self: flex-start;
+    font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.18rem 0.55rem; border-radius: 999px;
+    background: var(--accent); color: var(--accent-ink);
+  }
+  .tag.dir { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  .name {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.15rem; font-weight: 700; word-break: break-word; line-height: 1.25;
+  }
+  .meta { color: var(--muted); font-size: 0.82rem; margin: 0; }
+
+  .status { padding: 1.25rem 0; color: var(--muted); }
+  .status[role="alert"] { color: var(--ink); }
+  .skip {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--accent); color: var(--accent-ink);
+    padding: 0.5rem 1rem; z-index: 10;
+  }
+  .skip:focus { left: 0.5rem; top: 0.5rem; }
+  code {
+    background: color-mix(in srgb, var(--ink) 8%, transparent);
+    padding: 0.1rem 0.35rem; border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#listing">Skip to file list</a>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Index of this folder</p>
+    <h1 id="title">Pages in this folder</h1>
+    <p class="count" id="count" aria-live="polite"></p>
+  </header>
+
+  <main>
+    <nav id="listing" aria-labelledby="title">
+      <p class="status" id="status" role="status">Loading folder contents&hellip;</p>
+      <ul class="grid" id="list" hidden></ul>
+    </nav>
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---- Repo config — set once, works wherever this file is served from ----
+  var OWNER  = "martsky-mart";
+  var REPO   = "ethics-and-environment";
+  // Sub-folder within the repo this file lives in. "" means the root.
+  // If you move this file into e.g. a "pages" folder, set this to "pages".
+  var FOLDER = "";
+
+  var listEl   = document.getElementById("list");
+  var statusEl = document.getElementById("status");
+  var countEl  = document.getElementById("count");
+
+  var selfName = (location.pathname.split("/").pop() || "").toLowerCase();
+  var IGNORE   = ["index.html", "index.htm", selfName, ""];
+
+  function formatSize(bytes) {
+    if (bytes == null) return "";
+    if (bytes < 1024) return bytes + " B";
+    var u = ["KB","MB","GB"], i = -1, n = bytes;
+    do { n /= 1024; i++; } while (n >= 1024 && i < u.length - 1);
+    return n.toFixed(n < 10 ? 1 : 0) + " " + u[i];
+  }
+
+  function classify(name, isDir) {
+    if (isDir) return "Folder";
+    var ext = (name.split(".").pop() || "").toLowerCase();
+    var map = {
+      html:"Page", htm:"Page",
+      pdf:"PDF", txt:"Text", md:"Markdown",
+      css:"Stylesheet", js:"Script",
+      png:"Image", jpg:"Image", jpeg:"Image", gif:"Image", svg:"Image", webp:"Image",
+      json:"Data", csv:"Data", xml:"Data"
+    };
+    return map[ext] || "File";
+  }
+
+  function render(entries) {
+    if (!entries.length) {
+      statusEl.textContent = "No linkable pages were found in this folder.";
+      countEl.textContent  = "";
+      return;
+    }
+
+    entries.sort(function (a, b) {
+      var ad = a.isDir ? 0 : 1, bd = b.isDir ? 0 : 1;
+      if (ad !== bd) return ad - bd;
+      return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+    });
+
+    var frag = document.createDocumentFragment();
+    entries.forEach(function (e) {
+      var li   = document.createElement("li");
+      var a    = document.createElement("a");
+      a.className = "card";
+      a.href      = e.href;
+
+      var tag = document.createElement("span");
+      tag.className = "tag" + (e.isDir ? " dir" : "");
+      tag.setAttribute("aria-hidden", "true");
+      tag.textContent = e.kind;
+
+      var name = document.createElement("span");
+      name.className   = "name";
+      name.textContent = e.label;
+
+      a.setAttribute("aria-label",
+        e.label + ", " + e.kind + (e.size ? ", " + e.size : ""));
+
+      a.appendChild(tag);
+      a.appendChild(name);
+
+      if (e.size) {
+        var meta = document.createElement("p");
+        meta.className = "meta";
+        meta.setAttribute("aria-hidden", "true");
+        meta.textContent = e.size;
+        a.appendChild(meta);
+      }
+
+      li.appendChild(a);
+      frag.appendChild(li);
+    });
+
+    listEl.appendChild(frag);
+    listEl.hidden   = false;
+    statusEl.hidden = true;
+
+    var n = entries.length;
+    countEl.textContent = n + (n === 1 ? " item" : " items");
+  }
+
+  function fail(msg, isHtml) {
+    statusEl.setAttribute("role", "alert");
+    if (isHtml) statusEl.innerHTML = msg; else statusEl.textContent = msg;
+  }
+
+  // ---- GitHub Contents API ----
+  var repoBase = "https://api.github.com/repos/" + OWNER + "/" + REPO;
+  var contentsPath = FOLDER ? FOLDER.replace(/\/$/, "") : "";
+
+  fetch(repoBase)
+    .then(function (r) {
+      if (!r.ok) throw new Error("repo-" + r.status);
+      return r.json();
+    })
+    .then(function (info) {
+      var branch = encodeURIComponent(info.default_branch);
+      var url    = repoBase + "/contents/" + contentsPath + "?ref=" + branch;
+      return fetch(url);
+    })
+    .then(function (r) {
+      if (r.status === 403) throw new Error("ratelimit");
+      if (r.status === 404) throw new Error("notfound");
+      if (!r.ok) throw new Error("api-" + r.status);
+      return r.json();
+    })
+    .then(function (items) {
+      if (!Array.isArray(items)) throw new Error("unexpected");
+      var entries = [];
+      items.forEach(function (it) {
+        var nm    = it.name;
+        var lower = nm.toLowerCase();
+        if (IGNORE.indexOf(lower) !== -1) return;
+        if (lower.charAt(0) === ".") return;
+        var isDir = it.type === "dir";
+        entries.push({
+          href:  isDir ? "./" + encodeURIComponent(nm) + "/" : "./" + encodeURIComponent(nm),
+          label: isDir ? nm + "/" : nm,
+          name:  nm,
+          isDir: isDir,
+          kind:  classify(nm, isDir),
+          size:  isDir ? "" : formatSize(it.size)
+        });
+      });
+      render(entries);
+    })
+    .catch(function (err) {
+      var msg = err.message || "";
+      if (msg === "ratelimit") {
+        fail("The GitHub API rate limit has been reached (60 requests/hour per IP). " +
+          "Wait a minute and reload.");
+      } else if (msg === "notfound") {
+        fail("Couldn\u2019t find the repo or folder at " +
+          "<code>" + OWNER + "/" + REPO + (FOLDER ? "/" + FOLDER : "") + "</code>. " +
+          "Check the repo exists and is public.", true);
+      } else if (/^repo-/.test(msg)) {
+        fail("Couldn\u2019t reach the GitHub API (status " + msg.replace("repo-","") + "). " +
+          "Check that the repo <code>" + OWNER + "/" + REPO + "</code> is public.", true);
+      } else {
+        fail("Couldn\u2019t load the folder contents: " + msg);
+      }
+    });
+})();
+</script>
+</body>
+</html>
