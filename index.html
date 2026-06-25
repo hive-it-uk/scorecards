@@ -12,7 +12,7 @@
   --oxb:  #0e1428;
   --saf:  #ffc600;
   --grn:  #1c7c54;
-  --ppr:  #efe9e7;
+  --pal:  #5e0035;
   --wht:  #ffffff;
   --ink:  #0e1428;
   --bdr:  3px solid var(--ink);
@@ -103,7 +103,9 @@ a.card:focus-visible { outline: 3px solid var(--saf); outline-offset: 2px; box-s
   text-transform: uppercase; letter-spacing: .1em;
   padding: .18rem .55rem; background: var(--grn); color: var(--saf);
 }
-.card-tag.dir { background: transparent; color: var(--grn); border: 2px solid var(--grn); }
+.card-tag.guide      { background: var(--saf); color: var(--oxb); }
+.card-tag.scorecard  { background: var(--pal); color: var(--saf); }
+.card-tag.dir        { background: transparent; color: var(--grn); border: 2px solid var(--grn); }
 
 .card-name {
   font-size: 1.05rem; font-weight: 900; letter-spacing: -.01em;
@@ -300,9 +302,20 @@ code { font-family: ui-monospace, monospace; font-size: .85em; background: rgba(
     a.href      = e.href;
 
     var tag = document.createElement("span");
-    tag.className = "card-tag" + (e.isDir ? " dir" : "");
+    var tagClass = "card-tag";
+    var tagLabel = e.kind;
+    if (e.isDir) {
+      tagClass += " dir";
+    } else if (e.section === "guide") {
+      tagClass += " guide";
+      tagLabel  = "Guide";
+    } else if (e.section === "scorecard") {
+      tagClass += " scorecard";
+      tagLabel  = "Scorecard";
+    }
+    tag.className = tagClass;
     tag.setAttribute("aria-hidden", "true");
-    tag.textContent = e.kind;
+    tag.textContent = tagLabel;
 
     var name = document.createElement("span");
     name.className   = "card-name";
@@ -391,18 +404,14 @@ code { font-family: ui-monospace, monospace; font-size: .85em; background: rgba(
       return;
     }
     statusEl.hidden = true;
-    renderSection(
-      entries.filter(function (e) { return isHtml(e.name) && e.name.toLowerCase().indexOf("guide-") === 0; }),
-      guidesListEl, guidesSection, guidesCount
-    );
-    renderSection(
-      entries.filter(function (e) { return isHtml(e.name) && e.name.toLowerCase().indexOf("guide-") !== 0; }),
-      scorecardsListEl, scorecardsSection, scorecardsCount
-    );
-    renderSection(
-      entries.filter(function (e) { return !isHtml(e.name); }),
-      docsListEl, docsSection, docsCount
-    );
+    var guides     = entries.filter(function (e) { return isHtml(e.name) && e.name.toLowerCase().indexOf("guide-") === 0; });
+    var scorecards = entries.filter(function (e) { return isHtml(e.name) && e.name.toLowerCase().indexOf("guide-") !== 0; });
+    var docs       = entries.filter(function (e) { return !isHtml(e.name); });
+    guides.forEach(function (e)     { e.section = "guide"; });
+    scorecards.forEach(function (e) { e.section = "scorecard"; });
+    renderSection(guides,     guidesListEl,     guidesSection,     guidesCount);
+    renderSection(scorecards, scorecardsListEl, scorecardsSection, scorecardsCount);
+    renderSection(docs,       docsListEl,       docsSection,       docsCount);
     var n = entries.length;
     totalCountEl.textContent = n + (n === 1 ? " item" : " items");
   }
@@ -451,6 +460,7 @@ code { font-family: ui-monospace, monospace; font-size: .85em; background: rgba(
           created:     null,
           modified:    null,
           iterations:  null,
+          section:     null,
           isDir:       dir,
           kind:        classify(nm, dir),
           size:        dir ? "" : formatSize(it.size),
