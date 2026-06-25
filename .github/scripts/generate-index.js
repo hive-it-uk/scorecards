@@ -12,7 +12,7 @@ import { readdirSync, statSync } from "fs";
 
 const ROOT   = process.cwd();
 const FOLDER = "";           // sub-folder to index; "" = repo root
-const IGNORE = new Set(["index.html", "index.htm", "files.json", ".nojekyll"]);
+const IGNORE = new Set(["index.html", "index.htm", "files.json", ".nojekyll", "robots.txt"]);
 const HTML_EXTS = new Set([".html", ".htm"]);
 
 // ---- helpers ----------------------------------------------------------------
