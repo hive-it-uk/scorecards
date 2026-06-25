@@ -175,11 +175,6 @@ code { font-family: ui-monospace, monospace; font-size: .85em; background: rgba(
 (function () {
   "use strict";
 
-  /* ---- config ---- */
-  var OWNER  = "martsky-mart";
-  var REPO   = "ethics-and-environment";
-  var FOLDER = "";
-
   /* ---- elements ---- */
   var statusEl          = document.getElementById("status");
   var totalCountEl      = document.getElementById("total-count");
@@ -194,10 +189,8 @@ code { font-family: ui-monospace, monospace; font-size: .85em; background: rgba(
   var docsListEl        = document.getElementById("docs-list");
 
   var selfName  = (location.pathname.split("/").pop() || "").toLowerCase();
-  var IGNORE    = ["index.html", "index.htm", selfName, ""];
+  var IGNORE    = ["index.html", "index.htm", selfName, "", "files.json"];
   var HTML_EXTS = ["html", "htm"];
-  var repoBase  = "https://api.github.com/repos/" + OWNER + "/" + REPO;
-  var contentsPath = FOLDER ? FOLDER.replace(/\/$/, "") : "";
 
   /* ---- helpers ---- */
   function ext(name) { return (name.split(".").pop() || "").toLowerCase(); }
@@ -244,55 +237,7 @@ code { font-family: ui-monospace, monospace; font-size: .85em; background: rgba(
     });
   }
 
-  /* ---- fetch <title> and <meta description> from raw HTML ---- */
-  function fetchMeta(rawUrl) {
-    return timedFetch(rawUrl)
-      .then(function (r) { return r.ok ? r.text() : null; })
-      .then(function (html) {
-        if (!html) return { title: null, desc: null };
-        var headEnd = html.toLowerCase().indexOf("</head>");
-        var head = headEnd !== -1 ? html.slice(0, headEnd) : html;
-        var doc = new DOMParser().parseFromString(head + "</head><body></body></html>", "text/html");
-        var titleEl = doc.querySelector("title");
-        var descEl  = doc.querySelector("meta[name='description']");
-        return {
-          title: titleEl ? titleEl.textContent.trim() || null : null,
-          desc:  descEl  ? (descEl.getAttribute("content") || "").trim() || null : null
-        };
-      })
-      .catch(function () { return { title: null, desc: null }; });
-  }
-
-  /* ---- fetch commit history for a single file path ---- */
-  function fetchFileDates(branch, filePath) {
-    var base = repoBase + "/commits?sha=" + encodeURIComponent(branch) +
-               "&path=" + encodeURIComponent(filePath) + "&per_page=100";
-
-    function fetchAll(u, acc) {
-      return timedFetch(u).then(function (r) {
-        if (r.status === 403) throw new Error("ratelimit");
-        if (!r.ok) return acc;
-        return r.json().then(function (commits) {
-          commits.forEach(function (c) { acc.push(c); });
-          var link = r.headers.get("Link") || "";
-          var next = link.match(/<([^>]+)>;\s*rel="next"/);
-          if (next) return fetchAll(next[1], acc);
-          return acc;
-        });
-      });
-    }
-
-    return fetchAll(base, []).then(function (commits) {
-      if (!commits.length) return { modified: null, created: null, iterations: null };
-      var newest = commits[0];
-      var oldest = commits[commits.length - 1];
-      return {
-        modified:   newest.commit && newest.commit.committer && newest.commit.committer.date || null,
-        created:    oldest.commit && oldest.commit.committer && oldest.commit.committer.date || null,
-        iterations: commits.length
-      };
-    });
-  }
+  /* ---- (title, desc, dates and iterations all come from files.json — no per-file fetches needed) ---- */
 
   /* ---- build a single card element ---- */
   function makeCard(e) {
@@ -425,91 +370,45 @@ code { font-family: ui-monospace, monospace; font-size: .85em; background: rgba(
   }
 
   /* ---- main pipeline ---- */
-  timedFetch(repoBase)
+  timedFetch("./files.json")
     .then(function (r) {
-      if (!r.ok) throw new Error("repo-" + r.status);
+      if (r.status === 404) throw new Error("nojson");
+      if (!r.ok) throw new Error("fetch-" + r.status);
       return r.json();
     })
-    .then(function (info) {
-      var branch = info.default_branch;
-      var url = repoBase + "/contents/" + contentsPath + "?ref=" + encodeURIComponent(branch);
-      return timedFetch(url).then(function (r) {
-        return r.json().then(function (items) {
-          return { items: items, branch: branch, status: r.status };
-        });
-      });
-    })
-    .then(function (payload) {
-      if (payload.status === 403) throw new Error("ratelimit");
-      if (payload.status === 404) throw new Error("notfound");
-      if (!Array.isArray(payload.items)) throw new Error("unexpected");
-
-      var branch  = payload.branch;
+    .then(function (data) {
+      if (!data || !Array.isArray(data.files)) throw new Error("badjson");
       var entries = [];
-
-      payload.items.forEach(function (it) {
+      data.files.forEach(function (it) {
         var nm = it.name, lower = nm.toLowerCase();
         if (IGNORE.indexOf(lower) !== -1 || lower.charAt(0) === ".") return;
-        var dir = it.type === "dir";
         entries.push({
-          href:        dir ? "./" + encodeURIComponent(nm) + "/" : "./" + encodeURIComponent(nm),
+          href:        it.isDir ? "./" + encodeURIComponent(nm) + "/" : "./" + encodeURIComponent(nm),
           name:        nm,
-          displayName: nm,
-          title:       null,
-          desc:        null,
-          created:     null,
-          modified:    null,
-          iterations:  null,
+          displayName: it.title || nm,
+          title:       it.title   || null,
+          desc:        it.desc    || null,
+          created:     it.created  || null,
+          modified:    it.modified || null,
+          iterations:  it.iterations || null,
           section:     null,
-          isDir:       dir,
-          kind:        classify(nm, dir),
-          size:        dir ? "" : formatSize(it.size),
-          rawUrl:      (!dir && isHtml(nm))
-            ? "https://raw.githubusercontent.com/" + OWNER + "/" + REPO + "/" +
-              branch + "/" + (contentsPath ? contentsPath + "/" : "") + encodeURIComponent(nm)
-            : null
+          isDir:       !!it.isDir,
+          kind:        it.kind || "File",
+          size:        it.size || ""
         });
       });
-
-      var metaFetches = entries.map(function (e) {
-        return e.rawUrl
-          ? fetchMeta(e.rawUrl)
-          : Promise.resolve({ title: null, desc: null });
-      });
-
-      var dateFetches = entries.map(function (e) {
-        var filePath = (contentsPath ? contentsPath + "/" : "") + e.name;
-        return fetchFileDates(branch, filePath);
-      });
-
-      return Promise.all([Promise.all(metaFetches), Promise.all(dateFetches)])
-        .then(function (results) {
-          var metas = results[0];
-          var dates = results[1];
-          entries.forEach(function (e, i) {
-            var m = metas[i], d = dates[i];
-            if (m.title) { e.title = m.title; e.displayName = m.title; }
-            if (m.desc)  { e.desc = m.desc; }
-            if (d) { e.created = d.created; e.modified = d.modified; e.iterations = d.iterations; }
-          });
-          return entries;
-        });
+      return entries;
     })
     .then(render)
     .catch(function (err) {
       var msg = err.message || "";
-      if (msg === "ratelimit") {
-        fail("GitHub API rate limit reached (60 unauthenticated requests/hour). " +
-             "Wait a minute and reload. The dates and versions feature makes one API call per file " +
-             "so a folder with many files can exhaust the limit quickly.");
-      } else if (msg === "notfound") {
-        fail("Couldn\u2019t find <code>" + OWNER + "/" + REPO + "</code>. " +
-             "Check the repo exists and is public.", true);
-      } else if (/^repo-/.test(msg)) {
-        fail("Couldn\u2019t reach the GitHub API (status " + msg.replace("repo-", "") + "). " +
-             "Check <code>" + OWNER + "/" + REPO + "</code> is public.", true);
+      if (msg === "nojson") {
+        fail("No <code>files.json</code> found. Push to <code>main</code> to trigger the " +
+             "GitHub Action that generates it, then reload.", true);
+      } else if (msg === "badjson") {
+        fail("The <code>files.json</code> file is malformed. Re-run the GitHub Action to regenerate it.", true);
       } else if (/abort/i.test(msg)) {
-        fail("A request timed out. Check your connection and reload.");
+        fail("Request timed out. Check your connection and reload.");
       } else {
         fail("Couldn\u2019t load folder contents: " + msg);
       }
