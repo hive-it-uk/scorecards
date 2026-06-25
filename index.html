@@ -11,7 +11,6 @@
   --oxb:  #0e1428;
   --saf:  #ffc600;
   --grn:  #1c7c54;
-  --grn2: #155e3f;
   --ppr:  #efe9e7;
   --wht:  #ffffff;
   --ink:  #0e1428;
@@ -33,7 +32,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ---- skip link ---- */
 .skip {
   position: absolute; left: 0; top: -100px;
   background: var(--saf); color: var(--ink);
@@ -43,187 +41,90 @@ body {
 }
 .skip:focus { top: 0; }
 
-/* ---- masthead ---- */
-.mast {
-  background: var(--grn);
-  border-bottom: var(--bdr);
-}
-.mast-inner {
-  max-width: var(--W);
-  margin: 0 auto;
-  padding: 0 var(--pad);
-}
-.mast-body {
-  padding: 1.5rem 0 1.75rem;
-}
+.mast { background: var(--grn); border-bottom: var(--bdr); }
+.mast-inner { max-width: var(--W); margin: 0 auto; padding: 0 var(--pad); }
+.mast-body  { padding: 1.5rem 0 1.75rem; }
 .mast-kicker {
-  font-size: .7rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .14em;
-  color: var(--saf);
-  margin-bottom: .4rem;
-  display: block;
+  font-size: .7rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .14em; color: var(--saf); margin-bottom: .4rem; display: block;
 }
 .mast-h1 {
-  font-size: clamp(1.8rem, 4.5vw, 3rem);
-  font-weight: 900;
-  color: var(--wht);
-  line-height: 1;
-  letter-spacing: -.01em;
-  margin: 0 0 .6rem;
+  font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 900;
+  color: var(--wht); line-height: 1; letter-spacing: -.01em; margin: 0 0 .6rem;
 }
 .mast-count {
-  font-size: .72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: rgba(255,255,255,.65);
+  font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .1em; color: rgba(255,255,255,.65); display: block; min-height: 1.1em;
 }
-.mast-count[aria-live] { display: block; min-height: 1.1em; }
 
-/* ---- section headings ---- */
 .section-hdr {
-  max-width: var(--W);
-  margin: 0 auto;
-  padding: 0 var(--pad);
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: .35rem;
-  border-bottom: var(--bdr);
-  margin-top: 1.5rem;
-  padding-bottom: .4rem;
+  max-width: var(--W); margin: 1.5rem auto 0; padding: 0 var(--pad) .4rem;
+  display: flex; align-items: baseline; justify-content: space-between;
+  flex-wrap: wrap; gap: .35rem; border-bottom: var(--bdr);
 }
 .section-hdr h2 {
-  font-size: .9rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--ink);
+  font-size: .9rem; font-weight: 900; text-transform: uppercase; letter-spacing: .1em;
 }
 .section-count {
-  font-size: .68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: rgba(14,20,40,.55);
+  font-size: .68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .06em; color: rgba(14,20,40,.55);
 }
 
-/* ---- grid ---- */
 .grid {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   gap: 1.25rem;
-  max-width: var(--W);
-  margin: 0 auto;
+  max-width: var(--W); margin: 0 auto;
   padding: 1.25rem var(--pad) 0;
 }
 .grid:last-of-type { padding-bottom: 3rem; }
 
-/* ---- card ---- */
 li { display: flex; }
+
 a.card {
-  display: flex;
-  flex-direction: column;
-  gap: .55rem;
-  width: 100%;
-  padding: 1rem 1rem 1.1rem;
-  background: var(--wht);
-  border: var(--bdr);
-  box-shadow: var(--shadow);
-  text-decoration: none;
-  color: var(--ink);
+  display: flex; flex-direction: column; gap: .55rem;
+  width: 100%; padding: 1rem 1rem 1.1rem;
+  background: var(--wht); border: var(--bdr); box-shadow: var(--shadow);
+  text-decoration: none; color: var(--ink);
   transition: box-shadow .08s ease, transform .08s ease;
 }
-a.card:hover {
-  box-shadow: 6px 6px 0 var(--ink);
-  transform: translate(-1px, -1px);
-}
+a.card:hover { box-shadow: 6px 6px 0 var(--ink); transform: translate(-1px,-1px); }
 a.card:hover .card-name { text-decoration: underline; }
-a.card:focus-visible {
-  outline: 3px solid var(--saf);
-  outline-offset: 2px;
-  box-shadow: var(--shadow);
-  transform: none;
-}
+a.card:focus-visible { outline: 3px solid var(--saf); outline-offset: 2px; box-shadow: var(--shadow); transform: none; }
 @media (prefers-reduced-motion: reduce) {
   a.card { transition: none; }
   a.card:hover { box-shadow: var(--shadow); transform: none; }
 }
 
 .card-tag {
-  align-self: flex-start;
-  font-size: .62rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  padding: .18rem .55rem;
-  background: var(--grn);
-  color: var(--saf);
+  align-self: flex-start; font-size: .62rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .1em;
+  padding: .18rem .55rem; background: var(--grn); color: var(--saf);
 }
-.card-tag.dir {
-  background: transparent;
-  color: var(--grn);
-  border: 2px solid var(--grn);
-}
+.card-tag.dir { background: transparent; color: var(--grn); border: 2px solid var(--grn); }
+
 .card-name {
-  font-size: 1.05rem;
-  font-weight: 900;
-  letter-spacing: -.01em;
-  line-height: 1.2;
-  word-break: break-word;
+  font-size: 1.05rem; font-weight: 900; letter-spacing: -.01em;
+  line-height: 1.2; word-break: break-word;
 }
-.card-filename {
-  font-size: .72rem;
-  color: rgba(14,20,40,.55);
-  font-weight: 700;
-  word-break: break-all;
-}
-.card-size {
-  font-size: .7rem;
-  color: rgba(14,20,40,.45);
-  font-weight: 700;
-}
-.card-desc {
-  font-size: .78rem;
-  color: rgba(14,20,40,.65);
-  line-height: 1.45;
-  font-weight: 400;
-}
+.card-desc     { font-size: .78rem; color: rgba(14,20,40,.65); line-height: 1.45; font-weight: 400; }
+.card-filename { font-size: .72rem; color: rgba(14,20,40,.55); font-weight: 700; word-break: break-all; }
+.card-size     { font-size: .7rem;  color: rgba(14,20,40,.45); font-weight: 700; }
+
 .card-dates {
-  display: flex;
-  flex-direction: column;
-  gap: .15rem;
-  margin-top: auto;
-  padding-top: .4rem;
+  display: flex; flex-direction: column; gap: .15rem;
+  margin-top: auto; padding-top: .4rem;
   border-top: 1.5px solid rgba(14,20,40,.1);
-  font-size: .66rem;
-  font-weight: 700;
-  color: rgba(14,20,40,.45);
-  text-transform: uppercase;
-  letter-spacing: .04em;
+  font-size: .66rem; font-weight: 700; color: rgba(14,20,40,.45);
+  text-transform: uppercase; letter-spacing: .04em;
 }
 .card-dates span { display: block; }
 .card-dates strong { color: rgba(14,20,40,.65); font-weight: 800; }
 
-/* ---- status / loading ---- */
-.status {
-  max-width: var(--W);
-  margin: 2rem auto;
-  padding: 0 var(--pad);
-  font-size: .9rem;
-  color: rgba(14,20,40,.65);
-}
+.status { max-width: var(--W); margin: 2rem auto; padding: 0 var(--pad); font-size: .9rem; color: rgba(14,20,40,.65); }
 .status[role="alert"] { color: var(--ink); }
-code {
-  font-family: ui-monospace, monospace;
-  font-size: .85em;
-  background: rgba(14,20,40,.07);
-  padding: .1rem .35rem;
-}
+code { font-family: ui-monospace, monospace; font-size: .85em; background: rgba(14,20,40,.07); padding: .1rem .35rem; }
 </style>
 </head>
 <body>
@@ -242,7 +143,6 @@ code {
 <main id="listing" tabindex="-1">
   <p class="status" id="status" role="status">Loading&hellip; (fetching file metadata and commit history)</p>
 
-  <!-- Scorecards section -->
   <div id="scorecards-section" hidden>
     <div class="section-hdr">
       <h2>Scorecards</h2>
@@ -251,7 +151,6 @@ code {
     <ul class="grid" id="scorecards-list" aria-label="Scorecards"></ul>
   </div>
 
-  <!-- Documentation section -->
   <div id="docs-section" hidden>
     <div class="section-hdr">
       <h2>Documentation</h2>
@@ -265,28 +164,29 @@ code {
 (function () {
   "use strict";
 
+  /* ---- config ---- */
   var OWNER  = "martsky-mart";
   var REPO   = "ethics-and-environment";
   var FOLDER = "";
 
-  var statusEl      = document.getElementById("status");
-  var totalCountEl  = document.getElementById("total-count");
-
+  /* ---- elements ---- */
+  var statusEl          = document.getElementById("status");
+  var totalCountEl      = document.getElementById("total-count");
   var scorecardsSection = document.getElementById("scorecards-section");
   var scorecardsCount   = document.getElementById("scorecards-count");
   var scorecardsListEl  = document.getElementById("scorecards-list");
+  var docsSection       = document.getElementById("docs-section");
+  var docsCount         = document.getElementById("docs-count");
+  var docsListEl        = document.getElementById("docs-list");
 
-  var docsSection = document.getElementById("docs-section");
-  var docsCount   = document.getElementById("docs-count");
-  var docsListEl  = document.getElementById("docs-list");
-
-  var selfName = (location.pathname.split("/").pop() || "").toLowerCase();
-  var IGNORE   = ["index.html", "index.htm", selfName, ""];
+  var selfName  = (location.pathname.split("/").pop() || "").toLowerCase();
+  var IGNORE    = ["index.html", "index.htm", selfName, ""];
   var HTML_EXTS = ["html", "htm"];
+  var repoBase  = "https://api.github.com/repos/" + OWNER + "/" + REPO;
+  var contentsPath = FOLDER ? FOLDER.replace(/\/$/, "") : "";
 
-  function ext(name) {
-    return (name.split(".").pop() || "").toLowerCase();
-  }
+  /* ---- helpers ---- */
+  function ext(name) { return (name.split(".").pop() || "").toLowerCase(); }
   function isHtml(name) { return HTML_EXTS.indexOf(ext(name)) !== -1; }
 
   function formatSize(bytes) {
@@ -308,10 +208,33 @@ code {
     return map[ext(name)] || "File";
   }
 
+  function fmtDate(iso) {
+    if (!iso) return null;
+    var d = new Date(iso);
+    return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) +
+           "\u2009\u00b7\u2009" +
+           d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+  }
+
+  /* ---- fetch with timeout ---- */
+  function timedFetch(url) {
+    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = controller ? setTimeout(function () { controller.abort(); }, 8000) : null;
+    var opts  = controller ? { signal: controller.signal } : {};
+    return fetch(url, opts).then(function (r) {
+      if (timer) clearTimeout(timer);
+      return r;
+    }).catch(function (e) {
+      if (timer) clearTimeout(timer);
+      throw e;
+    });
+  }
+
+  /* ---- fetch <title> and <meta description> from raw HTML ---- */
   function fetchMeta(rawUrl) {
     return timedFetch(rawUrl)
-      .then(function(r) { return r.ok ? r.text() : null; })
-      .then(function(html) {
+      .then(function (r) { return r.ok ? r.text() : null; })
+      .then(function (html) {
         if (!html) return { title: null, desc: null };
         var headEnd = html.toLowerCase().indexOf("</head>");
         var head = headEnd !== -1 ? html.slice(0, headEnd) : html;
@@ -323,31 +246,20 @@ code {
           desc:  descEl  ? (descEl.getAttribute("content") || "").trim() || null : null
         };
       })
-      .catch(function() { return { title: null, desc: null }; });
+      .catch(function () { return { title: null, desc: null }; });
   }
 
-  function timedFetch(url) {
-    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
-    var timer = controller ? setTimeout(function() { controller.abort(); }, 8000) : null;
-    var opts = controller ? { signal: controller.signal } : {};
-    return fetch(url, opts).then(function(r) {
-      if (timer) clearTimeout(timer);
-      return r;
-    }).catch(function(e) {
-      if (timer) clearTimeout(timer);
-      throw e;
-    });
-  }
-
+  /* ---- fetch commit history for a single file path ---- */
   function fetchFileDates(branch, filePath) {
     var base = repoBase + "/commits?sha=" + encodeURIComponent(branch) +
                "&path=" + encodeURIComponent(filePath) + "&per_page=100";
+
     function fetchAll(u, acc) {
-      return timedFetch(u).then(function(r) {
+      return timedFetch(u).then(function (r) {
         if (r.status === 403) throw new Error("ratelimit");
         if (!r.ok) return acc;
-        return r.json().then(function(commits) {
-          commits.forEach(function(c) { acc.push(c); });
+        return r.json().then(function (commits) {
+          commits.forEach(function (c) { acc.push(c); });
           var link = r.headers.get("Link") || "";
           var next = link.match(/<([^>]+)>;\s*rel="next"/);
           if (next) return fetchAll(next[1], acc);
@@ -355,25 +267,21 @@ code {
         });
       });
     }
-    return fetchAll(base, []).then(function(commits) {
+
+    return fetchAll(base, []).then(function (commits) {
       if (!commits.length) return { modified: null, created: null, iterations: null };
       var newest = commits[0];
       var oldest = commits[commits.length - 1];
-      var modDt = newest.commit && newest.commit.committer && newest.commit.committer.date || null;
-      var creDt = oldest.commit && oldest.commit.committer && oldest.commit.committer.date || null;
-      return { modified: modDt, created: creDt, iterations: commits.length };
+      return {
+        modified:   newest.commit && newest.commit.committer && newest.commit.committer.date || null,
+        created:    oldest.commit && oldest.commit.committer && oldest.commit.committer.date || null,
+        iterations: commits.length
+      };
     });
   }
 
-  function fmtDate(iso) {
-    if (!iso) return null;
-    var d = new Date(iso);
-    return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) +
-           "\u2009\u00b7\u2009" +
-           d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
-  }
-
-
+  /* ---- build a single card element ---- */
+  function makeCard(e) {
     var li = document.createElement("li");
     var a  = document.createElement("a");
     a.className = "card";
@@ -388,16 +296,19 @@ code {
     name.className   = "card-name";
     name.textContent = e.displayName;
 
-    var label = e.displayName + ", " + e.kind;
-    if (e.size) label += ", " + e.size;
-    a.setAttribute("aria-label", label);
+    var ariaLabel = e.displayName + ", " + e.kind;
+    if (e.size)       ariaLabel += ", " + e.size;
+    if (e.iterations) ariaLabel += ", " + e.iterations + (e.iterations === 1 ? " version" : " versions");
+    if (e.modified)   ariaLabel += ", last modified " + fmtDate(e.modified);
+    if (e.created && e.created !== e.modified) ariaLabel += ", created " + fmtDate(e.created);
+    a.setAttribute("aria-label", ariaLabel);
 
     a.appendChild(tag);
     a.appendChild(name);
 
     if (e.desc) {
       var desc = document.createElement("span");
-      desc.className = "card-desc";
+      desc.className   = "card-desc";
       desc.textContent = e.desc;
       a.appendChild(desc);
     }
@@ -421,10 +332,8 @@ code {
     if (e.modified || e.created || e.iterations) {
       var dates = document.createElement("div");
       dates.className = "card-dates";
-      dates.setAttribute("aria-label",
-        (e.iterations ? e.iterations + (e.iterations === 1 ? " version. " : " versions. ") : "") +
-        (e.modified ? "Last modified " + fmtDate(e.modified) + ". " : "") +
-        (e.created  ? "Created " + fmtDate(e.created) + "." : ""));
+      dates.setAttribute("aria-hidden", "true");
+
       if (e.iterations) {
         var itr = document.createElement("span");
         itr.innerHTML = "Versions\u2002<strong>" + e.iterations + "</strong>";
@@ -447,77 +356,78 @@ code {
     return li;
   }
 
-  function renderSection(entries, listEl, sectionEl, countEl, sectionLabel) {
+  /* ---- render one section ---- */
+  function renderSection(entries, listEl, sectionEl, countEl) {
     if (!entries.length) return;
-    entries.sort(function(a, b) {
+    entries.sort(function (a, b) {
       var ad = a.isDir ? 0 : 1, bd = b.isDir ? 0 : 1;
       if (ad !== bd) return ad - bd;
       return a.displayName.toLowerCase().localeCompare(b.displayName.toLowerCase());
     });
     var frag = document.createDocumentFragment();
-    entries.forEach(function(e) { frag.appendChild(makeCard(e)); });
+    entries.forEach(function (e) { frag.appendChild(makeCard(e)); });
     listEl.appendChild(frag);
     var n = entries.length;
     countEl.textContent = n + (n === 1 ? " item" : " items");
     sectionEl.hidden = false;
   }
 
+  /* ---- render all ---- */
   function render(entries) {
     if (!entries.length) {
       statusEl.textContent = "No linkable pages were found in this folder.";
       return;
     }
-
-    var scorecards = entries.filter(function(e) { return isHtml(e.name); });
-    var docs       = entries.filter(function(e) { return !isHtml(e.name); });
-
     statusEl.hidden = true;
-
-    renderSection(scorecards, scorecardsListEl, scorecardsSection, scorecardsCount, "Scorecards");
-    renderSection(docs,       docsListEl,       docsSection,       docsCount,       "Documentation");
-
-    var total = entries.length;
-    totalCountEl.textContent = total + (total === 1 ? " item" : " items");
+    renderSection(
+      entries.filter(function (e) { return isHtml(e.name); }),
+      scorecardsListEl, scorecardsSection, scorecardsCount
+    );
+    renderSection(
+      entries.filter(function (e) { return !isHtml(e.name); }),
+      docsListEl, docsSection, docsCount
+    );
+    var n = entries.length;
+    totalCountEl.textContent = n + (n === 1 ? " item" : " items");
   }
 
+  /* ---- error display ---- */
   function fail(msg, isHtmlMsg) {
+    statusEl.removeAttribute("hidden");
     statusEl.setAttribute("role", "alert");
-    if (isHtmlMsg) statusEl.innerHTML = msg; else statusEl.textContent = msg;
+    if (isHtmlMsg) statusEl.innerHTML = msg;
+    else           statusEl.textContent = msg;
   }
 
-  var repoBase     = "https://api.github.com/repos/" + OWNER + "/" + REPO;
-  var contentsPath = FOLDER ? FOLDER.replace(/\/$/, "") : "";
-
+  /* ---- main pipeline ---- */
   timedFetch(repoBase)
-    .then(function(r) {
+    .then(function (r) {
       if (!r.ok) throw new Error("repo-" + r.status);
       return r.json();
     })
-    .then(function(info) {
-      var branch = encodeURIComponent(info.default_branch);
-      var url = repoBase + "/contents/" + contentsPath + "?ref=" + branch;
-      return timedFetch(url).then(function(r) {
-        return r.json().then(function(items) {
-          return { items: items, branch: info.default_branch, status: r.status };
+    .then(function (info) {
+      var branch = info.default_branch;
+      var url = repoBase + "/contents/" + contentsPath + "?ref=" + encodeURIComponent(branch);
+      return timedFetch(url).then(function (r) {
+        return r.json().then(function (items) {
+          return { items: items, branch: branch, status: r.status };
         });
       });
     })
-    .then(function(payload) {
+    .then(function (payload) {
       if (payload.status === 403) throw new Error("ratelimit");
       if (payload.status === 404) throw new Error("notfound");
       if (!Array.isArray(payload.items)) throw new Error("unexpected");
 
-      var branch = payload.branch;
+      var branch  = payload.branch;
       var entries = [];
 
-      payload.items.forEach(function(it) {
+      payload.items.forEach(function (it) {
         var nm = it.name, lower = nm.toLowerCase();
         if (IGNORE.indexOf(lower) !== -1 || lower.charAt(0) === ".") return;
         var dir = it.type === "dir";
         entries.push({
-          href: dir
-            ? "./" + encodeURIComponent(nm) + "/"
-            : "./" + encodeURIComponent(nm),
+          href:        dir ? "./" + encodeURIComponent(nm) + "/" : "./" + encodeURIComponent(nm),
           name:        nm,
           displayName: nm,
           title:       null,
@@ -528,45 +438,51 @@ code {
           isDir:       dir,
           kind:        classify(nm, dir),
           size:        dir ? "" : formatSize(it.size),
-          rawUrl: (!dir && isHtml(nm))
+          rawUrl:      (!dir && isHtml(nm))
             ? "https://raw.githubusercontent.com/" + OWNER + "/" + REPO + "/" +
               branch + "/" + (contentsPath ? contentsPath + "/" : "") + encodeURIComponent(nm)
             : null
         });
       });
 
-      var metaFetches = entries.map(function(e) {
-        return e.rawUrl ? fetchMeta(e.rawUrl) : Promise.resolve({ title: null, desc: null });
+      var metaFetches = entries.map(function (e) {
+        return e.rawUrl
+          ? fetchMeta(e.rawUrl)
+          : Promise.resolve({ title: null, desc: null });
       });
 
-      var dateFetches = entries.map(function(e) {
+      var dateFetches = entries.map(function (e) {
         var filePath = (contentsPath ? contentsPath + "/" : "") + e.name;
         return fetchFileDates(branch, filePath);
       });
 
-      return Promise.all([Promise.all(metaFetches), Promise.all(dateFetches)]).then(function(results) {
-        var metas = results[0];
-        var dates = results[1];
-        metas.forEach(function(m, i) {
-          if (m.title) { entries[i].title = m.title; entries[i].displayName = m.title; }
-          if (m.desc)  { entries[i].desc = m.desc; }
+      return Promise.all([Promise.all(metaFetches), Promise.all(dateFetches)])
+        .then(function (results) {
+          var metas = results[0];
+          var dates = results[1];
+          entries.forEach(function (e, i) {
+            var m = metas[i], d = dates[i];
+            if (m.title) { e.title = m.title; e.displayName = m.title; }
+            if (m.desc)  { e.desc = m.desc; }
+            if (d) { e.created = d.created; e.modified = d.modified; e.iterations = d.iterations; }
+          });
+          return entries;
         });
-        dates.forEach(function(d, i) {
-          if (d) { entries[i].created = d.created; entries[i].modified = d.modified; entries[i].iterations = d.iterations; }
-        });
-        return entries;
-      });
     })
     .then(render)
-    .catch(function(err) {
+    .catch(function (err) {
       var msg = err.message || "";
       if (msg === "ratelimit") {
-        fail("GitHub API rate limit reached (60 requests/hour unauthenticated). Wait a minute and reload. Tip: the dates and versions feature makes several API calls per file — a folder with many files can exhaust the limit quickly.");
+        fail("GitHub API rate limit reached (60 unauthenticated requests/hour). " +
+             "Wait a minute and reload. The dates and versions feature makes one API call per file " +
+             "so a folder with many files can exhaust the limit quickly.");
       } else if (msg === "notfound") {
-        fail("Couldn\u2019t find <code>" + OWNER + "/" + REPO + "</code>. Check the repo exists and is public.", true);
+        fail("Couldn\u2019t find <code>" + OWNER + "/" + REPO + "</code>. " +
+             "Check the repo exists and is public.", true);
       } else if (/^repo-/.test(msg)) {
-        fail("Couldn\u2019t reach the GitHub API (status " + msg.replace("repo-","") + "). Check <code>" + OWNER + "/" + REPO + "</code> is public.", true);
-      } else if (msg.indexOf("abort") !== -1 || msg.indexOf("AbortError") !== -1) {
+        fail("Couldn\u2019t reach the GitHub API (status " + msg.replace("repo-", "") + "). " +
+             "Check <code>" + OWNER + "/" + REPO + "</code> is public.", true);
+      } else if (/abort/i.test(msg)) {
         fail("A request timed out. Check your connection and reload.");
       } else {
         fail("Couldn\u2019t load folder contents: " + msg);
