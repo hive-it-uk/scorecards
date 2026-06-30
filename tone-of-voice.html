@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hive IT — Brand Strategy & Copy Auditor</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Poppins (Bold alternatives), Caveat (Human touches) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-gold: #FFC628;
+      --color-warm-gold: #F7BE3D;
+      --color-purple: #541752;
+      --color-coral: #ED4A76;
+      --color-navy: #000826;
+      --color-blue: #336889;
+      --color-green: #1C805C;
+    }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #fcfbfa;
+      color: var(--color-navy);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .font-caveat {
+      font-family: 'Caveat', cursive;
+    }
+
+    /* Custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d4cfc9;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #b0aaa2;
+    }
+
+    /* Custom utility colors */
+    .bg-brand-gold { background-color: var(--color-gold); }
+    .bg-brand-gold-soft { background-color: var(--color-warm-gold); }
+    .bg-brand-purple { background-color: var(--color-purple); }
+    .bg-brand-navy { background-color: var(--color-navy); }
+    .bg-brand-coral { background-color: var(--color-coral); }
+    .bg-brand-blue { background-color: var(--color-blue); }
+    .bg-brand-green { background-color: var(--color-green); }
+
+    .text-brand-purple { color: var(--color-purple); }
+    .text-brand-navy { color: var(--color-navy); }
+    .text-brand-coral { color: var(--color-coral); }
+    .text-brand-gold { color: var(--color-gold); }
+    
+    .border-brand-gold { border-color: var(--color-gold); }
+    .border-brand-purple { border-color: var(--color-purple); }
+    .border-brand-coral { border-color: var(--color-coral); }
+
+    /* Inline Highlight Marks (Wavy lines & visual backdrop glow) */
+    .hl-plain-english {
+      background-color: rgba(247, 190, 61, 0.22);
+      border-bottom: 2.5px solid var(--color-warm-gold);
+    }
+    .hl-inclusivity {
+      background-color: rgba(237, 74, 118, 0.18);
+      border-bottom: 2.5px solid var(--color-coral);
+    }
+    .hl-tone {
+      background-color: rgba(84, 23, 82, 0.15);
+      border-bottom: 2.5px dashed var(--color-purple);
+    }
+    .hl-spelling {
+      background-color: rgba(51, 104, 137, 0.18);
+      border-bottom: 2.5px solid var(--color-blue);
+    }
+    .hl-length {
+      background-color: rgba(51, 104, 137, 0.08);
+      border-bottom: 2.5px solid var(--color-blue);
+    }
+
+    /* Manual adjustments (unfixable issues) use a distinct dotted line style */
+    .hl-manual-adjust {
+      border-bottom-style: dotted !important;
+      border-bottom-width: 3px !important;
+    }
+
+    /* Rich text format styling rules inside contenteditable */
+    #copyEditor p { margin-bottom: 1rem; }
+    #copyEditor h1, #copyEditor h2 { font-weight: 700; margin-top: 1.25rem; margin-bottom: 0.5rem; color: var(--color-purple); }
+    #copyEditor h1 { font-size: 1.25rem; }
+    #copyEditor h2 { font-size: 1.1rem; }
+    #copyEditor ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+    #copyEditor ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+    #copyEditor strong { font-weight: 700; }
+    #copyEditor em { font-style: italic; }
+
+    /* Custom interactive placeholder for contenteditable */
+    #copyEditor:empty::before {
+      content: "Type or paste your marketing post, caption, or copy draft here (bullet points, formatting, and paragraphs will be kept!)...";
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+  <!-- TOP HEADER & BRAND ID -->
+  <header class="bg-brand-navy text-white py-4 px-6 shadow-md border-b-4 border-brand-gold">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <!-- Hive IT Custom Visual Identity Logo Lockup -->
+        <div class="relative w-12 h-12 flex-shrink-0 flex items-center justify-center bg-brand-gold rounded-full shadow-inner">
+          <!-- Stacked hex hive icon in gold circle -->
+          <svg class="w-8 h-8 text-brand-purple" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L4 6.5v11L12 22l8-4.5v-11L12 2zm0 2.3l6 3.37v6.66l-6 3.37-6-3.37V7.67l6-3.37z" />
+            <path d="M12 6.5l4 2.25v4.5l-4 2.25-4-2.25v-4.5z" opacity="0.8"/>
+          </svg>
+          <!-- Coral Full Stop Accent representation -->
+          <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-brand-coral rounded-full border-2 border-brand-navy"></div>
+        </div>
+        <div>
+          <div class="flex items-baseline gap-1">
+            <span class="font-bold text-2xl tracking-tight text-white">hive</span>
+            <span class="text-brand-gold font-semibold text-lg">IT</span>
+          </div>
+          <p class="text-xs text-slate-300 font-medium">Brand Strategy & Copy Auditor</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-xs bg-slate-800 text-slate-200 border border-slate-700 px-3 py-1.5 rounded-full flex items-center gap-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          Interactive Mode
+        </span>
+        <button id="toggleGuidelinesBtn" class="bg-brand-purple hover:bg-opacity-90 text-white font-semibold text-xs py-2 px-4 rounded-lg transition-all flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          Quick Brand Guides
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- QUICK BRAND GUIDELINES FLOATING DRAWER (Toggleable) -->
+  <div id="guidelinesDrawer" class="hidden bg-slate-50 border-b border-slate-200 p-6 shadow-inner transition-all">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-brand-purple font-bold text-lg flex items-center gap-2">
+          <svg class="w-5 h-5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path></svg>
+          Hive IT Brand Blueprint
+        </h3>
+        <button id="closeDrawerBtn" class="text-slate-400 hover:text-slate-600">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-sm">
+        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-brand-gold">
+          <h4 class="font-bold text-brand-navy mb-2">1. Four Voice Pillars</h4>
+          <ul class="space-y-1.5 text-xs text-slate-600">
+            <li><strong>Friendly:</strong> Conversation & approachable. Like a warm, helpful colleague.</li>
+            <li><strong>Humble:</strong> Credits others, avoids bragging or arrogant claims.</li>
+            <li><strong>Empathetic:</strong> Acknowledges readers' feelings & situations.</li>
+            <li><strong>Inclusive:</strong> Easy to follow, zero technical jargon or barriers.</li>
+          </ul>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-brand-purple">
+          <h4 class="font-bold text-brand-navy mb-2">2. Underdog Coach Style</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Encouraging, optimistic, squad-first, and quietly confident. We celebrate the team over individual "genius," state outcomes plainly, and maintain a point of view with kind stance.
+          </p>
+          <div class="mt-2 text-xs text-brand-purple font-semibold font-caveat text-right">- encouraging & hardworking</div>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-brand-coral">
+          <h4 class="font-bold text-brand-navy mb-2">3. Style & Inclusivity Rules</h4>
+          <ul class="space-y-1.5 text-xs text-slate-600">
+            <li><strong>UK English:</strong> organisation, colour, recognise, prioritised.</li>
+            <li><strong>Disabilities:</strong> Use GDS person-first rules. No ableist metaphors (like "blind eye" or "tone-deaf").</li>
+            <li><strong>Accessibility:</strong> CamelCase hashtags at the end. Emoji sparing (max 3, no words replaced).</li>
+          </ul>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-brand-blue">
+          <h4 class="font-bold text-brand-navy mb-2">4. Target Personas</h4>
+          <ul class="space-y-1.5 text-xs text-slate-600">
+            <li><strong>The Fellowship:</strong> Peer agencies. Shared learning & collaborative networks.</li>
+            <li><strong>The Squire:</strong> Future talent. Mentorship, support, growth.</li>
+            <li><strong>The Hand:</strong> Decision-makers. Values-led, evidence, carbon-neutrality.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING HIGHLIGHT INTERACTIVE TOOLTIP POPUP -->
+  <div id="highlightTooltip" class="hidden absolute z-50 max-w-sm bg-slate-900 text-white rounded-xl shadow-2xl p-4 border border-slate-700 text-xs transition-all duration-150">
+    <div class="flex justify-between items-start gap-4 mb-2">
+      <span id="tooltipCategory" class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded">Plain English</span>
+      <button onclick="closeTooltip()" class="text-slate-400 hover:text-white text-sm font-bold">&times;</button>
+    </div>
+    <h4 id="tooltipTitle" class="font-bold text-xs text-brand-gold mb-1">Found Issue</h4>
+    <p id="tooltipExplanation" class="text-slate-300 mb-3 leading-relaxed"></p>
+    <div class="flex justify-between items-center" id="tooltipActionsContainer">
+      <div class="flex justify-end w-full" id="tooltipActions">
+        <!-- Generated auto fix action button -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="flex-grow max-w-7xl w-full mx-auto p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+    
+    <!-- LEFT PANEL: THE DRAFT EDITOR (7 Columns on desktop) -->
+    <section class="lg:col-span-7 flex flex-col gap-4">
+      
+      <!-- Controls & Setup -->
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+          <h2 class="text-lg font-bold text-brand-navy flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-brand-gold"></span>
+            Drafting Console
+          </h2>
+          <!-- Channel & Audience Pickers -->
+          <div class="flex items-center gap-2 flex-wrap text-xs">
+            <div>
+              <label class="block text-[10px] text-slate-400 font-bold uppercase mb-0.5">Platform</label>
+              <select id="channelSelector" class="bg-slate-50 border border-slate-200 text-slate-700 py-1 px-2.5 rounded-lg font-semibold focus:ring-1 focus:ring-amber-400 focus:outline-none">
+                <option value="linkedin">LinkedIn (Professional & Human)</option>
+                <option value="instagram">Instagram (Warmer & Visual)</option>
+                <option value="web">Web & General (Empathetic & Plain)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] text-slate-400 font-bold uppercase mb-0.5">Persona Target</label>
+              <select id="personaSelector" class="bg-slate-50 border border-slate-200 text-slate-700 py-1 px-2.5 rounded-lg font-semibold focus:ring-1 focus:ring-amber-400 focus:outline-none">
+                <option value="fellowship">The Fellowship (Peers/Partners)</option>
+                <option value="squire">The Squire (Talent/Recruits)</option>
+                <option value="hand">The Hand (Decision-Makers)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template selector -->
+        <div class="mb-4">
+          <label class="block text-xs font-semibold text-slate-500 mb-1.5">Load a testing draft:</label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <button onclick="loadTemplate('boastful')" class="text-left text-xs p-2.5 rounded-xl border border-rose-200 bg-rose-50 hover:bg-rose-100 transition-all text-slate-700">
+              <span class="font-bold text-rose-700 block">⚡ Boastful & Fluffy</span>
+              Highly corporate & jargon heavy.
+            </button>
+            <button onclick="loadTemplate('ableist')" class="text-left text-xs p-2.5 rounded-xl border border-amber-200 bg-amber-50 hover:bg-amber-100 transition-all text-slate-700">
+              <span class="font-bold text-amber-700 block">⚠️ Ableist Idioms & US Spelling</span>
+              Fails several GDS inclusivity guidelines.
+            </button>
+            <button onclick="loadTemplate('friendly')" class="text-left text-xs p-2.5 rounded-xl border border-emerald-200 bg-emerald-50 hover:bg-emerald-100 transition-all text-slate-700">
+              <span class="font-bold text-emerald-700 block">✨ Authentic Hive IT Style</span>
+              Meets standards beautifully.
+            </button>
+          </div>
+        </div>
+
+        <!-- Unified Status Header -->
+        <div class="flex border-b border-slate-200 mb-3 justify-between items-center pb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-brand-purple flex items-center gap-1.5">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-purple opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-purple"></span>
+              </span>
+              Live Auditing Workspace
+            </span>
+          </div>
+          <span class="text-[10px] text-slate-400 font-bold px-3 italic">Unified Workspace preserves rich formatting!</span>
+        </div>
+
+        <!-- The Unified Text Area Editor -->
+        <div class="relative bg-white border border-slate-200 rounded-xl focus-within:ring-2 focus-within:ring-amber-400 transition-all overflow-hidden shadow-inner">
+          
+          <!-- WYSIWYG Toolbar -->
+          <div class="flex flex-wrap items-center gap-1 p-2 border-b border-slate-200 bg-slate-100">
+            <button onclick="formatText('bold')" class="p-1.5 text-slate-600 hover:text-brand-purple hover:bg-slate-200 rounded transition-colors" title="Bold"><strong class="font-serif px-1 text-sm">B</strong></button>
+            <button onclick="formatText('italic')" class="p-1.5 text-slate-600 hover:text-brand-purple hover:bg-slate-200 rounded transition-colors" title="Italic"><em class="font-serif px-1 text-sm">I</em></button>
+            <button onclick="formatText('underline')" class="p-1.5 text-slate-600 hover:text-brand-purple hover:bg-slate-200 rounded transition-colors" title="Underline"><u class="font-serif px-1 text-sm">U</u></button>
+            <div class="w-px h-5 bg-slate-300 mx-1"></div>
+            <button onclick="formatText('formatBlock', 'H1')" class="px-2 py-1.5 text-slate-600 hover:text-brand-purple hover:bg-slate-200 rounded font-bold text-xs transition-colors" title="Heading 1">H1</button>
+            <button onclick="formatText('formatBlock', 'H2')" class="px-2 py-1.5 text-slate-600 hover:text-brand-purple hover:bg-slate-200 rounded font-bold text-xs transition-colors" title="Heading 2">H2</button>
+            <button onclick="formatText('formatBlock', 'P')" class="px-2 py-1.5 text-slate-600 hover:text-brand-purple hover:bg-slate-200 rounded text-xs font-semibold transition-colors" title="Paragraph">P</button>
+            <div class="w-px h-5 bg-slate-300 mx-1"></div>
+            <button onclick="formatText('insertUnorderedList')" class="p-1.5 text-slate-600 hover:text-brand-purple hover:bg-slate-200 rounded transition-colors" title="Bullet List">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16M8 6h.01M8 12h.01M8 18h.01" /></svg>
+            </button>
+            <button onclick="formatText('insertOrderedList')" class="p-1.5 text-slate-600 hover:text-brand-purple hover:bg-slate-200 rounded transition-colors" title="Numbered List">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 6h14M7 12h14M7 18h14M3 6h.01M3 12h.01M3 18h.01" /></svg>
+            </button>
+            <button onclick="formatText('removeFormat')" class="ml-auto px-2 py-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded text-[10px] font-bold uppercase transition-colors" title="Clear Formatting">Clear Format</button>
+          </div>
+
+          <!-- Editor rich text editable container (Now serving BOTH modes in one unified element!) -->
+          <div id="copyEditor" 
+            contenteditable="true"
+            class="w-full h-[500px] p-5 bg-slate-50 focus:bg-white text-slate-800 focus:outline-none overflow-y-auto text-sm transition-colors leading-relaxed whitespace-pre-wrap select-text"></div>
+          
+          <!-- Character and word trackers -->
+          <div class="absolute bottom-3 right-3 flex items-center gap-3 text-slate-400 text-[10px] font-bold bg-white/95 px-2 py-1 rounded backdrop-blur shadow-sm z-10 pointer-events-none border border-slate-100">
+            <span id="charCount">0 characters</span>
+            <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+            <span id="wordCount">0 words</span>
+          </div>
+        </div>
+
+        <!-- Co-Pilot Actions -->
+        <div class="mt-4 flex flex-wrap gap-2 justify-between items-center">
+          <div class="flex gap-2">
+            <button id="clearBtn" class="px-4 py-2 text-xs font-semibold text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-all">
+              Clear Draft
+            </button>
+          </div>
+          
+          <!-- Gemini Co-Pilot Section -->
+          <div class="flex items-center gap-2">
+            <!-- API Status / Trigger -->
+            <button id="geminiRewriteBtn" class="bg-brand-purple hover:bg-opacity-95 text-white font-semibold text-xs py-2 px-4 rounded-xl transition-all shadow-md flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-brand-gold animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path></svg>
+              🔮 AI Co-Pilot Rewrite
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- GEMINI WORKSPACE MODAL PANEL (Built-in Generation / Review) -->
+      <div id="aiWorkspace" class="bg-slate-900 text-slate-100 rounded-2xl p-5 shadow-lg border border-slate-800 hidden">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-brand-gold font-bold text-sm flex items-center gap-1.5">
+            <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+            Hive IT AI Brand Optimizer
+          </h3>
+          <button id="closeAiWorkspace" class="text-slate-400 hover:text-slate-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+
+        <div id="aiLoading" class="hidden flex flex-col items-center justify-center py-8 gap-3">
+          <div class="w-10 h-10 border-4 border-amber-400 border-t-transparent rounded-full animate-spin"></div>
+          <p class="text-xs text-amber-200 font-caveat text-lg">Revising draft to fit Underdog Sports Coach archetype...</p>
+        </div>
+
+        <div id="aiOutputContainer" class="hidden space-y-4">
+          <!-- Side-by-side comparison grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Original Draft -->
+            <div>
+              <label class="block text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1 flex items-center gap-1">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                Original Draft
+              </label>
+              <div id="aiOriginalText" class="bg-slate-800/50 p-4 rounded-xl text-xs text-slate-400 leading-relaxed h-[500px] overflow-y-auto border border-slate-700/50 whitespace-pre-wrap select-text opacity-75"></div>
+            </div>
+            <!-- Aligned Copy -->
+            <div>
+              <label class="block text-[10px] uppercase tracking-wider text-brand-gold font-bold mb-1 flex items-center gap-1">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Aligned Brand Copy
+              </label>
+              <div id="aiResultText" class="bg-slate-800 p-4 rounded-xl text-xs text-slate-200 leading-relaxed h-[500px] overflow-y-auto border-2 border-brand-purple whitespace-pre-wrap select-text shadow-inner shadow-brand-purple/20"></div>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] text-slate-400 italic">Review improvements carefully.</span>
+            <div class="flex gap-2">
+              <button id="copyAiResult" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3 py-1.5 rounded-lg border border-slate-700 transition-all">Copy Copy</button>
+              <button id="applyAiResult" class="bg-brand-gold hover:bg-opacity-95 text-brand-purple font-bold text-xs px-3 py-1.5 rounded-lg transition-all">Apply to Editor</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Prompts Generator inside AI module -->
+      <div id="aiPromptSelection" class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2 pt-2 border-t border-slate-800 text-xs">
+        <button id="aiWriteCareersBtn" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-2.5 rounded-lg text-left">
+          <span class="font-bold text-amber-400 block mb-0.5">💡 Careers Story Prompt</span>
+          Draft an inclusive post looking for a trainee placement.
+        </button>
+        <button id="aiWriteWorkplaceBtn" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-2.5 rounded-lg text-left">
+          <span class="font-bold text-amber-400 block mb-0.5">🌱 Carbon Neutral Goal</span>
+          Draft a LinkedIn piece celebrating green workflows.
+        </button>
+      </div>
+    </div>
+
+    <!-- PERSONALITY COMPASS -->
+    <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+      <h3 class="text-sm font-bold text-brand-navy mb-3 flex items-center gap-1.5">
+        Who are we speaking to? — Persona Compass
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div id="compassFellowship" class="p-3.5 rounded-xl border-2 transition-all cursor-pointer bg-slate-50 border-slate-100 hover:border-amber-200">
+          <span class="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold">The Fellowship</span>
+            <h4 class="text-xs font-bold text-brand-navy mt-2">"Let's build & learn together"</h4>
+            <p class="text-[11px] text-slate-500 mt-1 leading-normal">Peers and agency partners. Values peer credit, knowledge sharing, and cooperative innovation.</p>
+          </div>
+          <div id="compassSquire" class="p-3.5 rounded-xl border-2 transition-all cursor-pointer bg-slate-50 border-slate-100 hover:border-amber-200">
+            <span class="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold">The Squire</span>
+            <h4 class="text-xs font-bold text-brand-navy mt-2">"Grow with our squad"</h4>
+            <p class="text-[11px] text-slate-500 mt-1 leading-normal">Prospective talent, placements, and juniors. Highly responsive to mentoring & well-being stories.</p>
+          </div>
+          <div id="compassHand" class="p-3.5 rounded-xl border-2 transition-all cursor-pointer bg-slate-50 border-slate-100 hover:border-amber-200">
+            <span class="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold">The Hand</span>
+            <h4 class="text-xs font-bold text-brand-navy mt-2">"Real ethical outcomes"</h4>
+            <p class="text-[11px] text-slate-500 mt-1 leading-normal">Decision-makers adjacent. Focus on sustainability, clear case evidence, and user research impact.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: INTERACTIVE BRAND AUDITOR (5 Columns on desktop) -->
+    <section class="lg:col-span-5 flex flex-col gap-4">
+      
+      <!-- REAL-TIME SCORECARD GAUGE -->
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex flex-col items-center">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 w-full text-left">Brand Alignment Score</h3>
+        
+        <div class="relative flex items-center justify-center w-36 h-36">
+          <!-- Circular score circle -->
+          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" stroke="#f1f5f9" stroke-width="8" fill="transparent" />
+            <circle id="scoreProgress" cx="50" cy="50" r="40" stroke="var(--color-gold)" stroke-width="8" fill="transparent"
+              stroke-dasharray="251.2" stroke-dashoffset="251.2" class="transition-all duration-500 ease-out" />
+          </svg>
+          <div class="absolute flex flex-col items-center">
+            <span id="scoreText" class="text-3xl font-extrabold text-brand-purple">100</span>
+            <span class="text-[10px] text-slate-400 font-bold tracking-wider uppercase">Aligned</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 w-full mt-4 pt-4 border-t border-slate-100 text-center">
+          <div>
+            <span id="positiveFeedbackCount" class="text-sm font-bold text-brand-green">0</span>
+            <p class="text-[10px] text-slate-400 font-bold uppercase">Empathetic Triggers</p>
+          </div>
+          <div>
+            <span id="issuesCount" class="text-sm font-bold text-brand-coral">0</span>
+            <p class="text-[10px] text-slate-400 font-bold uppercase">Required Fixes</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUDIT FINDINGS PANEL -->
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex-grow flex flex-col min-h-[380px]">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+          <h3 class="font-bold text-brand-navy flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            Suggestions & Improvements
+          </h3>
+          <span id="suggestionsBadge" class="bg-slate-100 text-slate-600 font-bold text-xs px-2 py-0.5 rounded-full">0 found</span>
+        </div>
+
+        <!-- Filter Pill Tags -->
+        <div class="flex flex-wrap gap-1.5 mb-4">
+          <button onclick="setAuditFilter('all')" id="filterBtn-all" class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-900 text-white transition-all">
+            All
+          </button>
+          <button onclick="setAuditFilter('inclusivity')" id="filterBtn-inclusivity" class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-700 transition-all">
+            Inclusivity (GDS)
+          </button>
+          <button onclick="setAuditFilter('tone')" id="filterBtn-tone" class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 hover:bg-purple-50 hover:text-brand-purple transition-all">
+            Tone & Archetype
+          </button>
+          <button onclick="setAuditFilter('plain-english')" id="filterBtn-plain-english" class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 hover:bg-amber-50 hover:text-amber-700 transition-all">
+            Plain English
+          </button>
+          <button onclick="setAuditFilter('spelling')" id="filterBtn-spelling" class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-brand-blue transition-all">
+            UK Spelling
+          </button>
+        </div>
+
+        <!-- LIST OF DYNAMIC HIGHLIGHT CARDS -->
+        <div id="suggestionsList" class="space-y-3 overflow-y-auto max-h-[600px] flex-grow pr-1">
+          <!-- Populated dynamically via JS -->
+          <div class="text-center py-10 text-slate-400 text-sm">
+            <svg class="w-12 h-12 text-slate-200 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+            No draft copy typed yet. Let's write or select a test template to audit!
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- BOTTOM FOOTER -->
+  <footer class="bg-brand-navy text-slate-400 py-6 px-6 mt-12 text-center text-xs border-t border-slate-800">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <p>© 2026 Hive IT Brand Strategy Suite. Certified carbon-neutral operations.</p>
+      <div class="flex gap-4 text-[11px]">
+        <a href="#" class="hover:text-brand-gold transition-colors">01 Brand Strategy</a>
+        <span>•</span>
+        <a href="#" class="hover:text-brand-gold transition-colors">02 Tone of Voice</a>
+        <span>•</span>
+        <a href="#" class="hover:text-brand-gold transition-colors">03 Values</a>
+        <span>•</span>
+        <a href="#" class="hover:text-brand-gold transition-colors">06 Inclusive Content</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DYNAMIC CORE AUDITOR SCRIPT -->
+  <script>
+    // Config values injected from collaborative environment
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+    const apiKey = ""; // Will be processed on the host container via runtime key injection
+
+    // Utility regex escaping helper
+    function escapeRegExp(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    // 1. RULES DATABASE - Sampled exactly from Hive IT brand books
+    const RULES = [
+      // Disability Language & Ableist Idioms (GDS - File 06)
+      { pattern: /\bthe disabled\b/gi, replacement: "disabled people", category: "inclusivity", title: "Non-inclusive terminology", explanation: "UK GDS standard recommends calling people 'disabled people' or referring to individuals rather than grouping as 'the disabled'.", severity: "critical" },
+      { pattern: /\bthe handicapped\b/gi, replacement: "disabled people", category: "inclusivity", title: "Outdated language", explanation: "Avoid terms that carry outdated medical or patronising connotations. Use 'disabled people'.", severity: "critical" },
+      { pattern: /\bsuffers from\b/gi, replacement: "has", category: "inclusivity", title: "Avoid medical victimization", explanation: "Avoid descriptors implying suffering or tragedy. State simply that someone 'has' or is diagnosed with a condition.", severity: "critical" },
+      { pattern: /\bafflicted by\b/gi, replacement: "has", category: "inclusivity", title: "Victimizing language", explanation: "Using 'afflicted by' frames people by struggle rather than agency.", severity: "critical" },
+      { pattern: /\bstricken with\b/gi, replacement: "has", category: "inclusivity", title: "Outdated phrasing", explanation: "State the impairment or condition neutrally without emotional hyperbole.", severity: "critical" },
+      { pattern: /\bwheelchair-bound\b/gi, replacement: "wheelchair user", category: "inclusivity", title: "Physical device confinement framing", explanation: "A wheelchair empowers mobility. Use the term 'wheelchair user'.", severity: "critical" },
+      { pattern: /\bconfined to a wheelchair\b/gi, replacement: "wheelchair user", category: "inclusivity", title: "Device confinement framing", explanation: "Focus on the person and utility. Use 'wheelchair user'.", severity: "critical" },
+      { pattern: /\bvictim of\b/gi, replacement: "person who has", category: "inclusivity", title: "Victim framing", explanation: "Write neutrally as a supportive coach. Use 'person who has [condition]'.", severity: "critical" },
+      { pattern: /\bable-bodied\b/gi, replacement: "non-disabled people", category: "inclusivity", title: "Ableist language", explanation: "The counterpart of disabled is 'non-disabled' to keep language balanced and clean.", severity: "critical" },
+      { pattern: /\bnormal people\b/gi, replacement: "non-disabled people", category: "inclusivity", title: "Exclusionary terminology", explanation: "Do not imply that non-disabled people represent the only 'normal' standard.", severity: "critical" },
+      { pattern: /\bmental handicap\b/gi, replacement: "learning disability", category: "inclusivity", title: "Incorrect terminology", explanation: "Modern inclusive standards request using 'learning disability'.", severity: "critical" },
+      { pattern: /\bfalls on deaf ears\b/gi, replacement: "is ignored", category: "inclusivity", title: "Ableist idiom", explanation: "Avoid physical sensory-impairment metaphors to describe standard events like being ignored.", severity: "critical" },
+      { pattern: /\bturn a blind eye\b/gi, replacement: "overlook", category: "inclusivity", title: "Ableist idiom", explanation: "Avoid using blindness as a metaphor for negligence or ignoring problems.", severity: "critical" },
+      { pattern: /\bblind to\b/gi, replacement: "overlook", category: "inclusivity", title: "Ableist metaphor", explanation: "Do not use physical sight loss as a casual synonym for ignorance.", severity: "critical" },
+      { pattern: /\btone-deaf\b/gi, replacement: "out of touch", category: "inclusivity", title: "Ableist metaphor", explanation: "Avoid using deaf metaphors to represent cultural insensitivity. Replace with 'out of touch' or 'unaware'.", severity: "critical" },
+      { pattern: /\bcrippled by\b/gi, replacement: "held back by", category: "inclusivity", title: "Ableist idiom", explanation: "Avoid mobility handicap metaphors to describe standard business roadblocks.", severity: "critical" },
+      { pattern: /\blame\b/gi, replacement: "weak", category: "inclusivity", title: "Ableist metaphor", explanation: "Do not use 'lame' (a mobility impairment) to mean unconvincing or boring.", severity: "critical" },
+      { pattern: /\b(crazy|insane|mad)\b/gi, replacement: "remarkable", category: "inclusivity", title: "Casual mental illness metaphors", explanation: "Avoid casual use of clinical psychiatric conditions as slang. Try 'remarkable', 'intense', or 'surprising'.", severity: "critical" },
+
+      // Gender Neutral Standards (File 06)
+      { pattern: /\bchairman\b/gi, replacement: "chair", category: "inclusivity", title: "Gendered position", explanation: "Ensure roles are completely gender-neutral. Swap with 'chair'.", severity: "warning" },
+      { pattern: /\bmanpower\b/gi, replacement: "workforce", category: "inclusivity", title: "Gendered collective", explanation: "Use 'workforce' or 'staff' to represent the entire collective team.", severity: "warning" },
+      { pattern: /\bbusinessman\b/gi, replacement: "businessperson", category: "inclusivity", title: "Gendered role", explanation: "Keep titles accessible and inclusive with 'businessperson'.", severity: "warning" },
+      { pattern: /\bspokesman\b/gi, replacement: "spokesperson", category: "inclusivity", title: "Gendered speaker", explanation: "Use 'spokesperson' to avoid unnecessary gender assignments.", severity: "warning" },
+      { pattern: /\bmanmade\b/gi, replacement: "manufactured", category: "inclusivity", title: "Gendered adjective", explanation: "Replace 'manmade' with 'manufactured' or 'artificial'.", severity: "warning" },
+      { pattern: /\bDear Sir\/Madam\b/gi, replacement: "Hello", category: "inclusivity", title: "Gender binary greeting", explanation: "Use friendly gender-free greetings. Start with 'Hello' or the reader's name.", severity: "warning" },
+
+      // Plain English Conversions (File 06)
+      { pattern: /\bpurchase\b/gi, replacement: "buy", category: "plain-english", title: "Plain English improvement", explanation: "Prefer simple, everyday actions over heavy administrative terms.", severity: "warning" },
+      { pattern: /\bassist\b/gi, replacement: "help", category: "plain-english", title: "Plain English swap", explanation: "'Help' is conversational and friendly. 'Assist' sounds clinical.", severity: "warning" },
+      { pattern: /\butilise\b/gi, replacement: "use", category: "plain-english", title: "Utilise is fluff", explanation: "Always swap 'utilise' with 'use'. It reads faster and with zero pretension.", severity: "warning" },
+      { pattern: /\butilize\b/gi, replacement: "use", category: "plain-english", title: "Utilize is fluff", explanation: "Always swap 'utilize' with 'use' (and check UK spelling).", severity: "warning" },
+      { pattern: /\bcommence\b/gi, replacement: "start", category: "plain-english", title: "Plain English swap", explanation: "Keep things active and direct. Use 'start'.", severity: "warning" },
+      { pattern: /\bterminate\b/gi, replacement: "end", category: "plain-english", title: "Plain English swap", explanation: "'End' is clearer than the harsh corporate 'terminate'.", severity: "warning" },
+      { pattern: /\bobtain\b/gi, replacement: "get", category: "plain-english", title: "Plain English swap", explanation: "Use simple, conversational verbs.", severity: "warning" },
+      { pattern: /\brequire\b/gi, replacement: "need", category: "plain-english", title: "Plain English swap", explanation: "'Need' is softer, friendlier, and easier to scan than 'require'.", severity: "warning" },
+      { pattern: /\bsufficient\b/gi, replacement: "enough", category: "plain-english", title: "Plain English swap", explanation: "Swap heavy words with common ones to match broad reading levels.", severity: "warning" },
+      { pattern: /\badditional\b/gi, replacement: "extra", category: "plain-english", title: "Plain English swap", explanation: "Choose standard friendly terms like 'extra' or 'more'.", severity: "warning" },
+      { pattern: /\bapproximately\b/gi, replacement: "about", category: "plain-english", title: "Plain English swap", explanation: "Keep sentences light and digestible.", severity: "warning" },
+      { pattern: /\bin order to\b/gi, replacement: "to", category: "plain-english", title: "Clutter phrase", explanation: "Simplify layout clutter. 'To' says exactly the same thing in one word.", severity: "warning" },
+      { pattern: /\bprior to\b/gi, replacement: "before", category: "plain-english", title: "Clutter phrase", explanation: "Replace bureaucratic phrases with conversational flow.", severity: "warning" },
+      { pattern: /\bregarding\b/gi, replacement: "about", category: "plain-english", title: "Plain English swap", explanation: "Use 'about' to match a warm, empathetic colleague's tone.", severity: "warning" },
+      { pattern: /\bdemonstrate\b/gi, replacement: "show", category: "plain-english", title: "Plain English swap", explanation: "Keep the underdog coach style active. Show outcomes directly.", severity: "warning" },
+      { pattern: /\bfacilitate\b/gi, replacement: "help", category: "plain-english", title: "Over-formal jargon", explanation: "Bureaucratic and opaque. Use 'help' or 'make easier'.", severity: "warning" },
+      { pattern: /\bendeavour\b/gi, replacement: "try", category: "plain-english", title: "Humble swap", explanation: "Use 'try'—it feels accessible and straightforward.", severity: "warning" },
+      { pattern: /\bascertain\b/gi, replacement: "find out", category: "plain-english", title: "Plain English swap", explanation: "'Find out' sounds conversational; 'ascertain' sounds detached.", severity: "warning" },
+      { pattern: /\bcurrently\b/gi, replacement: "now", category: "plain-english", title: "Wordy filler", explanation: "State the present moment cleanly. Try 'now'.", severity: "warning" },
+      { pattern: /\bwhilst\b/gi, replacement: "while", category: "plain-english", title: "Plain English swap", explanation: "Prefer simple UK English flow. Swap with 'while'.", severity: "warning" },
+
+      // Brand Fluff & Boastful Claims (Tone - File 02)
+      { pattern: /\bleverage\b/gi, replacement: "use", category: "tone", title: "Corporate buzzword", explanation: "Corporate brochure fluff. Say what you mean.", severity: "warning" },
+      { pattern: /\bleveraged\b/gi, replacement: "used", category: "tone", title: "Corporate buzzword", explanation: "Keep sentences down-to-earth and free of jargon.", severity: "warning" },
+      { pattern: /\bsynergistic\b/gi, replacement: "collaborative", category: "tone", title: "Fluff / Buzzword", explanation: "Hive IT thrives on clear, simple communication. Synergistic is overused jargon.", severity: "warning" },
+      { pattern: /\bsynergy\b/gi, replacement: "teamwork", category: "tone", title: "Corporate buzzword", explanation: "Swap dry office talk with human warmth: 'teamwork' or 'working together'.", severity: "warning" },
+      { pattern: /\boptimise\b/gi, replacement: "improve", category: "tone", title: "Corporate fluff", explanation: "Prefer straightforward terms. Try 'improve' or 'streamline'.", severity: "warning" },
+      { pattern: /\boptimize\b/gi, replacement: "improve", category: "tone", title: "Corporate jargon & US spelling", explanation: "Prefer UK spelling 'optimise', or better yet, a plain word like 'improve'.", severity: "warning" },
+      { pattern: /\bbest-in-class\b/gi, replacement: "skilled", category: "tone", title: "Arrogant branding claim", explanation: "Hive IT is humble. We don't claim to be 'best-in-class'; we let our impact show it.", severity: "warning" },
+      { pattern: /\bworld-class\b/gi, replacement: "excellent", category: "tone", title: "Arrogant branding claim", explanation: "Keep it down-to-earth. Let your partners, metrics, and case results do the talking.", severity: "warning" },
+      { pattern: /\bcutting-edge\b/gi, replacement: "modern", category: "tone", title: "Vague cliché", explanation: "Overhyped marketing speak. Focus on real outcomes instead of empty jargon.", severity: "warning" },
+      { pattern: /\bgame-changing\b/gi, replacement: "meaningful", category: "tone", title: "Boastful marketing hype", explanation: "Avoid hyperbole. We inspire hope through substance, not slogans.", severity: "warning" },
+      { pattern: /\bseamless\b/gi, replacement: "smooth", category: "tone", title: "Vague jargon", explanation: "No software is perfectly seamless. Describe the ease plainly instead.", severity: "warning" },
+      { pattern: /\brobust solution\b/gi, replacement: "reliable tool", category: "tone", title: "Corporate placeholder", explanation: "Describe features plainly rather than leaning on standard office templates.", severity: "warning" },
+      { pattern: /\bdeep dive\b/gi, replacement: "look closely", category: "tone", title: "Office cliché", explanation: "Use warmer, everyday actions like 'explore' or 'look closely'.", severity: "warning" },
+      { pattern: /\bcircle back\b/gi, replacement: "catch up later", category: "tone", title: "Office cliché", explanation: "Keep the tone human. Try 'catch up later' or 'return to this'.", severity: "warning" },
+      { pattern: /\blow-hanging fruit\b/gi, replacement: "easy wins", category: "tone", title: "Office cliché", explanation: "Avoid dry office jargon. We are a supportive team squad.", severity: "warning" },
+      { pattern: /\bmarket-leading\b/gi, replacement: "experienced", category: "tone", title: "Boastful claim", explanation: "As a Citizen underdog coach, state what we do plainly. Let quality prove itself.", severity: "warning" },
+      { pattern: /\bgenius\b/gi, replacement: "thoughtful", category: "tone", title: "Self-congratulatory", explanation: "We celebrate the entire squad over individual stars.", severity: "warning" },
+      { pattern: /\bcrushing it\b/gi, replacement: "doing great work", category: "tone", title: "Aggressive sales-speak", explanation: "Ensure tone is warm, friendly, and community-driven.", severity: "warning" },
+      { pattern: /\bthe only ones\b/gi, replacement: "uniquely positioned", category: "tone", title: "Boastful stance", explanation: "Hive IT values collaboration. Avoid arrogant exclusionary absolute claims.", severity: "warning" },
+
+      // UK Spelling Checks (File 02)
+      { pattern: /\borganization\b/g, replacement: "organisation", category: "spelling", title: "US Spelling", explanation: "Hive IT uses UK spelling (organisation, recognise, colour).", severity: "warning" },
+      { pattern: /\brecognize\b/g, replacement: "recognise", category: "spelling", title: "US Spelling", explanation: "Hive IT uses UK spelling.", severity: "warning" },
+      { pattern: /\bcolor\b/g, replacement: "colour", category: "spelling", title: "US Spelling", explanation: "Hive IT uses UK spelling.", severity: "warning" },
+      { pattern: /\bbehavior\b/g, replacement: "behaviour", category: "spelling", title: "US Spelling", explanation: "Hive IT uses UK spelling.", severity: "warning" },
+      { pattern: /\bprioritize\b/g, replacement: "prioritise", category: "spelling", title: "US Spelling", explanation: "Hive IT uses UK spelling.", severity: "warning" },
+      { pattern: /\banalyze\b/g, replacement: "analyse", category: "spelling", title: "US Spelling", explanation: "Hive IT uses UK spelling.", severity: "warning" },
+
+      // UNFIXABLE ACTIVE / PASSIVE VOICE AUDIT (File 06 - Manual Review)
+      { pattern: /\b(am|is|are|was|were|be|been|being)\b\s+([a-z]+ed|built|done|chosen|given|made|written|run|spent|taken|held)\s+by\b/gi, replacement: null, category: "plain-english", title: "Passive voice", explanation: "Use active verbs to make copy more engaging (e.g. 'We tested the design' instead of 'The design was tested by us'). This keeps your underdog coach voice active and energetic.", severity: "warning" },
+
+      // UNFIXABLE CONTEXT-DEPENDENT JARGON (File 06 - Manual Review)
+      { pattern: /\bdigital transformation\b/gi, replacement: null, category: "plain-english", title: "Abstract Jargon", explanation: "This term is very broad. Try explaining the specific change (e.g., 'moving services online' or 'updating our booking database') rather than using this abstract phrase.", severity: "warning" },
+      { pattern: /\bthought leadership\b/gi, replacement: null, category: "tone", title: "Abstract Jargon", explanation: "This is vague corporate jargon. State the actual knowledge sharing plainly (e.g., 'sharing what we learned from our green operations audit').", severity: "warning" },
+      { pattern: /\bstakeholder(s)?\b/gi, replacement: null, category: "inclusivity", title: "Corporate speak", explanation: "'Stakeholder' can feel exclusive. Try referencing the specific group of people instead, such as 'partners', 'charity managers', 'the local community', or 'users'.", severity: "warning" },
+      { pattern: /\bdeliverable(s)?\b/gi, replacement: null, category: "plain-english", title: "Administrative jargon", explanation: "This is dry jargon. Say what you are actually creating (e.g., 'the website', 'our report', or 'the user research findings').", severity: "warning" },
+      { pattern: /\bmethodolog(y|ies)\b/gi, replacement: null, category: "plain-english", title: "Academic jargon", explanation: "This is academic jargon. Use simpler words like 'our approach', 'how we work', or 'our process'.", severity: "warning" },
+      { pattern: /\binfrastructure\b/gi, replacement: null, category: "plain-english", title: "Technical jargon", explanation: "Ensure this technical word is necessary. If writing for non-specialists, try more common terms like 'systems', 'servers', or 'networks'.", severity: "warning" },
+      { pattern: /\bbuy-in\b/gi, replacement: null, category: "tone", title: "Corporate speak", explanation: "This is corporate jargon. Try simpler phrasing like 'agreement', 'support', or 'approval'.", severity: "warning" },
+      { pattern: /\becosystem\b/gi, replacement: null, category: "tone", title: "Business cliché", explanation: "This is a trendy business cliché. Describe the relationships or network plainly (e.g., 'our network of partner agencies').", severity: "warning" },
+      { pattern: /\btouchpoint(s)?\b/gi, replacement: null, category: "plain-english", title: "Vague jargon", explanation: "Vague jargon. Specify the actual interactions, such as 'emails', 'meetings', or 'website visits'.", severity: "warning" },
+      { pattern: /\bkey-decision-maker(s)?\b/gi, replacement: null, category: "tone", title: "Corporate jargon", explanation: "Corporate jargon. Say 'leaders', 'founders', or 'managers' to stay warm and accessible.", severity: "warning" },
+
+      // TIRED BUSINESS CLICHÉS (File 02 - Manual Review)
+      { pattern: /\bthink outside the box\b/gi, replacement: null, category: "tone", title: "Business cliché", explanation: "This is a tired business cliché. Try expressing our values of 'Open-Minded Innovation' or 'boundless thinking' in a more fresh, natural way.", severity: "warning" },
+      { pattern: /\bmove the needle\b/gi, replacement: null, category: "tone", title: "Business cliché", explanation: "Vague cliché. State the concrete impact we want to create (e.g., 'increase user signups by 20%') instead of using empty figures of speech.", severity: "warning" },
+      { pattern: /\bgoing forward\b/gi, replacement: null, category: "plain-english", title: "Filler phrase", explanation: "Often a filler phrase. Try omitting it entirely or stating the timeline clearly (e.g., 'from next month').", severity: "warning" },
+      { pattern: /\bat the end of the day\b/gi, replacement: null, category: "plain-english", title: "Filler phrase", explanation: "Filler phrase. Keep your underdog coach copy brief, punchy, and focused on outcomes.", severity: "warning" },
+      { pattern: /\bvalue-added\b/gi, replacement: null, category: "tone", title: "Corporate speak", explanation: "Corporate jargon. Explain the benefit clearly in terms of what the user actually gets.", severity: "warning" }
+    ];
+
+    // Readability positive triggers (Things we want to praise!)
+    const POSITIVE_TRIGGERS = [
+      { term: "impact", weight: 3 },
+      { term: "user-first", weight: 3 },
+      { term: "inclusive", weight: 3 },
+      { term: "sustainability", weight: 3 },
+      { term: "community", weight: 2 },
+      { term: "team", weight: 2 },
+      { term: "together", weight: 2 },
+      { term: "learn", weight: 2 },
+      { term: "support", weight: 2 },
+      { term: "ethics", weight: 2 },
+      { term: "evidence", weight: 2 },
+      { term: "hope", weight: 3 },
+      { term: "we", weight: 1 },
+      { term: "you", weight: 1 }
+    ];
+
+    // Rich formatted HTML templates for testing
+    const TEMPLATES = {
+      boastful: `<h1>Supercharge Your Outreach!</h1><p><strong>Hive IT</strong> is a market-leading, best-in-class IT partner.</p><p>We leveraged our world-class, genius developers to create a cutting-edge robust solution that optimized synergy and crushed it. Any serious organization already knows this.</p><p>Click here to purchase our additional services in order to commences optimized growth.</p>`,
+      ableist: `<h2>Let's Get Started</h2><p>We turn a blind eye to obstacles and avoid solutions that fall on deaf ears.</p><p>If your business is currently crippled by tone-deaf systems, he or she can assist you prior to termination of your legacy software.</p><p>This crazy tool will utilize a robust solution so normal people can obtain and demonstrate their manpower.</p>`,
+      friendly: `<h2>Simple Next Steps</h2><p>Not sure where to start with digital tools? That's normal. Here's a simple first step.</p><p>We worked together with a local charity team this month to make their website easier to use.</p><ul><li>User-first design thinking</li><li>Full inclusive validation testing</li><li>Direct collaboration with our squad</li></ul><p>This was a real team effort — credit to everyone involved in helping users feel included. We're proud of this progress, and we know there's more to do.</p><p>#TechForGood #InclusiveByDesign</p>`
+    };
+
+    // Global variables
+    let currentFilter = 'all';
+    let currentAuditResults = [];
+    let highlightTimer = null;
+
+    // DOM Elements
+    const copyEditor = document.getElementById('copyEditor');
+    const charCount = document.getElementById('charCount');
+    const wordCount = document.getElementById('wordCount');
+    const scoreProgress = document.getElementById('scoreProgress');
+    const scoreText = document.getElementById('scoreText');
+    const suggestionsBadge = document.getElementById('suggestionsBadge');
+    const suggestionsList = document.getElementById('suggestionsList');
+    const positiveFeedbackCount = document.getElementById('positiveFeedbackCount');
+    const issuesCount = document.getElementById('issuesCount');
+    
+    // Config / Toggle Drawer
+    const guidelinesDrawer = document.getElementById('guidelinesDrawer');
+    const toggleGuidelinesBtn = document.getElementById('toggleGuidelinesBtn');
+    const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+
+    // Gemini elements
+    const geminiRewriteBtn = document.getElementById('geminiRewriteBtn');
+    const aiWorkspace = document.getElementById('aiWorkspace');
+    const closeAiWorkspace = document.getElementById('closeAiWorkspace');
+    const aiLoading = document.getElementById('aiLoading');
+    const aiOutputContainer = document.getElementById('aiOutputContainer');
+    const aiOriginalText = document.getElementById('aiOriginalText');
+    const aiResultText = document.getElementById('aiResultText');
+    const copyAiResult = document.getElementById('copyAiResult');
+    const applyAiResult = document.getElementById('applyAiResult');
+    const aiWriteCareersBtn = document.getElementById('aiWriteCareersBtn');
+    const aiWriteWorkplaceBtn = document.getElementById('aiWriteWorkplaceBtn');
+
+    const channelSelector = document.getElementById('channelSelector');
+    const personaSelector = document.getElementById('personaSelector');
+
+    // WYSIWYG formatting engine
+    function formatText(command, value = null) {
+      document.execCommand(command, false, value);
+      copyEditor.focus();
+      runAudit();
+      
+      // If currently highlighting, refresh the highlight map so it stays accurate
+      if (currentMode === 'highlight') {
+        clearTimeout(highlightTimer);
+        highlightTimer = setTimeout(() => {
+          applyLiveHighlights();
+        }, 100);
+      }
+    }
+
+    // INITIALIZATION & EVENT LISTENERS
+    window.onload = function() {
+      // Setup text change monitoring (Triggers live inline styling and sidebar stats instantly)
+      copyEditor.addEventListener('input', () => {
+        runAudit(); // Updates score right away
+        
+        clearTimeout(highlightTimer);
+        // Debounce actual DOM injection to prevent typing disruption
+        highlightTimer = setTimeout(() => {
+          applyLiveHighlights();
+        }, 800);
+      });
+      
+      // Filter out raw MS Word junk styling on pasting inside editor, but preserve structure
+      copyEditor.addEventListener('paste', handleSanitizedPaste);
+
+      // Setup Drawer listeners
+      toggleGuidelinesBtn.addEventListener('click', () => {
+        guidelinesDrawer.classList.toggle('hidden');
+      });
+      closeDrawerBtn.addEventListener('click', () => {
+        guidelinesDrawer.classList.add('hidden');
+      });
+
+      // Clear button
+      document.getElementById('clearBtn').addEventListener('click', () => {
+        copyEditor.innerHTML = '';
+        runAudit();
+      });
+
+      // Gemini trigger
+      geminiRewriteBtn.addEventListener('click', () => handleAiRewrite());
+      closeAiWorkspace.addEventListener('click', () => aiWorkspace.classList.add('hidden'));
+      applyAiResult.addEventListener('click', applyAiDraft);
+      copyAiResult.addEventListener('click', copyAiText);
+
+      aiWriteCareersBtn.addEventListener('click', () => triggerAiPrompt('careers'));
+      aiWriteWorkplaceBtn.addEventListener('click', () => triggerAiPrompt('sustainability'));
+
+      // Close floating tooltip when clicking away or inside active editor text (not on a span)
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('#highlightTooltip') && !e.target.classList.contains('hl-plain-english') && !e.target.classList.contains('hl-inclusivity') && !e.target.classList.contains('hl-tone') && !e.target.classList.contains('hl-spelling') && !e.target.classList.contains('hl-length')) {
+          closeTooltip();
+        }
+      });
+
+      // Persona Compass triggers
+      document.getElementById('compassFellowship').addEventListener('click', () => {
+        personaSelector.value = 'fellowship';
+        runAudit();
+      });
+      document.getElementById('compassSquire').addEventListener('click', () => {
+        personaSelector.value = 'squire';
+        runAudit();
+      });
+      document.getElementById('compassHand').addEventListener('click', () => {
+        personaSelector.value = 'hand';
+        runAudit();
+      });
+
+      // Run initial check if templates/placeholders loaded
+      runAudit();
+    };
+
+    // Caret Preservation logic allowing continuous typing with live structural rendering
+    function saveCaret() {
+      const sel = window.getSelection();
+      if (!sel.rangeCount) return null;
+      const range = sel.getRangeAt(0);
+      
+      // Ensure we only manipulate if the cursor is actively inside our editor
+      if (!copyEditor.contains(range.commonAncestorContainer)) return null;
+
+      const marker = document.createElement('span');
+      marker.id = 'caret-marker';
+      marker.style.display = 'none';
+      range.insertNode(marker);
+      return marker;
+    }
+
+    function restoreCaret() {
+      const marker = document.getElementById('caret-marker');
+      if (marker) {
+        const sel = window.getSelection();
+        const range = document.createRange();
+        range.setStartBefore(marker);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        
+        const parent = marker.parentNode;
+        parent.removeChild(marker);
+        parent.normalize(); // Re-fuse the text nodes split by the marker
+      }
+    }
+
+    // Unifies rule generation for DRY logic
+    function getActiveRules(text) {
+      const activeRules = RULES.filter(rule => rule.pattern.test(text));
+      
+      // Evaluate sentences structurally for length checks
+      const paragraphs = text.split(/\n+/);
+      paragraphs.forEach(para => {
+        const sentenceRegex = /[^.!?\s][^.!?]*(?:[.!?]+|\s*$)/g;
+        let match;
+        while ((match = sentenceRegex.exec(para)) !== null) {
+          if (match.index === sentenceRegex.lastIndex) {
+            sentenceRegex.lastIndex++;
+          }
+          const sentenceText = match[0].trim();
+          const sentenceWords = sentenceText.split(/\s+/).filter(w => w.length > 0);
+          
+          if (sentenceWords.length > 22) {
+            // Only match the first 5 words to keep it highly robust across HTML text boundaries
+            const matchSnippet = sentenceWords.slice(0, 5).join(' ');
+            let escaped = escapeRegExp(matchSnippet).replace(/\s+/g, '\\s+');
+            activeRules.push({
+              pattern: new RegExp('\\b' + escaped, 'i'),
+              replacement: null,
+              category: 'length',
+              title: 'Very long sentence',
+              explanation: `This sentence has ${sentenceWords.length} words. Our guidelines state that keeping sentences under 20-22 words keeps reading level accessible for all backgrounds. Try breaking this into smaller, one-idea sentences.`
+            });
+          }
+        }
+      });
+      
+      // Add dynamic rules (Generic CTAs & Hashtags)
+      const platform = channelSelector.value;
+      if (platform === 'linkedin' || platform === 'instagram') {
+        const hashtags = text.match(/#\w+/g);
+        if (hashtags) {
+          hashtags.forEach(tag => {
+            const isCamelCase = /[A-Z]/.test(tag.slice(1)) && /[a-z]/.test(tag.slice(1));
+            if (!isCamelCase) {
+              const rawWord = tag.slice(1);
+              let suggest = "#" + rawWord.charAt(0).toUpperCase() + rawWord.slice(1).toLowerCase();
+              activeRules.push({
+                pattern: new RegExp(escapeRegExp(tag), 'i'),
+                replacement: suggest,
+                category: 'inclusivity',
+                title: 'Non-CamelCase hashtag',
+                explanation: `CamelCase hashtags like ${suggest} let screen-readers differentiate words easily, ensuring disabled people hear each word properly.`,
+                severity: 'warning'
+              });
+            }
+          });
+        }
+      }
+
+      const genericCtas = ["click here", "read more", "link in bio", "click the link"];
+      genericCtas.forEach(cta => {
+        const regex = new RegExp(`\\b${cta}\\b`, 'gi');
+        if (regex.test(text)) {
+          activeRules.push({
+            pattern: regex,
+            replacement: "visit our careers page",
+            category: "inclusivity",
+            title: "Generic link text",
+            explanation: "Screen readers skip directly between links. Use meaningful action language describing the link target (e.g., 'explore our software vacancy' instead of 'click here').",
+            severity: "warning"
+          });
+        }
+      });
+      
+      return activeRules;
+    }
+
+    // Engine executing live evaluation
+    function applyLiveHighlights() {
+      const isFocused = document.activeElement === copyEditor;
+      
+      if (isFocused) {
+        saveCaret();
+      }
+      
+      unhighlightBrandIssues(copyEditor);
+      const text = copyEditor.innerText || copyEditor.textContent;
+      const activeRulesToMap = getActiveRules(text);
+
+      // Recursively decorate DOM tree
+      highlightBrandIssues(copyEditor, activeRulesToMap);
+      setupMapClickInteractions();
+      
+      if (isFocused) {
+        restoreCaret();
+      }
+    }
+
+    // Helper unwrapper to strip highlight spans without losing user typed layout structures
+    function unhighlightBrandIssues(element) {
+      const highlights = element.querySelectorAll('.hl-plain-english, .hl-inclusivity, .hl-tone, .hl-spelling, .hl-length');
+      highlights.forEach(span => {
+        const parent = span.parentNode;
+        if (parent) {
+          while (span.firstChild) {
+            parent.insertBefore(span.firstChild, span);
+          }
+          parent.removeChild(span);
+        }
+      });
+      // Safety pass to clean any lingering un-restored markers
+      const orphanedMarkers = element.querySelectorAll('#caret-marker');
+      orphanedMarkers.forEach(m => m.parentNode.removeChild(m));
+      
+      element.normalize(); // merge adjacent text nodes
+    }
+
+    // Recursive DOM node splitter for exact word mapping
+    function highlightBrandIssues(element, activeRules) {
+      element.normalize();
+      
+      const childNodes = Array.from(element.childNodes);
+      for (let node of childNodes) {
+        if (node.nodeType === 3) { // Text node
+          highlightTextNode(node, activeRules);
+        } else if (node.nodeType === 1) { // Element node
+          // Skip recursing inside other solid highlight spans to prevent stack overflows,
+          // and skip our caret-marker.
+          if (node.tagName !== 'SCRIPT' && 
+              node.tagName !== 'STYLE' &&
+              node.id !== 'caret-marker' &&
+              !node.classList.contains('hl-plain-english') && 
+              !node.classList.contains('hl-inclusivity') && 
+              !node.classList.contains('hl-tone') && 
+              !node.classList.contains('hl-spelling') &&
+              !node.classList.contains('hl-length')) {
+            highlightBrandIssues(node, activeRules);
+          }
+        }
+      }
+    }
+
+    // Helper text node splitter to guarantee forward progress without infinite recursion
+    function highlightTextNode(node, activeRules) {
+      const text = node.nodeValue;
+      let earliestMatch = null;
+      let matchingRule = null;
+      let matchIndex = -1;
+
+      activeRules.forEach(ruleInfo => {
+        ruleInfo.pattern.lastIndex = 0;
+        const match = ruleInfo.pattern.exec(text);
+        if (match) {
+          const index = match.index;
+          if (earliestMatch === null || index < matchIndex) {
+            earliestMatch = match[0];
+            matchingRule = ruleInfo;
+            matchIndex = index;
+          }
+        }
+      });
+
+      if (earliestMatch !== null) {
+        const beforeText = text.substring(0, matchIndex);
+        const matchedText = earliestMatch;
+        const afterText = text.substring(matchIndex + matchedText.length);
+
+        const parent = node.parentNode;
+        if (!parent) return;
+
+        const beforeNode = document.createTextNode(beforeText);
+        
+        const span = document.createElement('span');
+        span.textContent = matchedText;
+        
+        let hlClass = 'hl-plain-english';
+        if (matchingRule.category === 'inclusivity') hlClass = 'hl-inclusivity';
+        else if (matchingRule.category === 'tone') hlClass = 'hl-tone';
+        else if (matchingRule.category === 'spelling') hlClass = 'hl-spelling';
+        else if (matchingRule.category === 'length') hlClass = 'hl-length';
+        
+        // If the matching rule has no direct automatic replacement, append dotted underline class
+        if (!matchingRule.replacement) {
+          hlClass += ' hl-manual-adjust';
+        }
+        
+        span.className = `${hlClass} cursor-pointer font-bold transition-all px-0.5 rounded`;
+        span.setAttribute('data-suggestion', matchingRule.replacement || '');
+        span.setAttribute('data-category', matchingRule.category);
+        span.setAttribute('data-title', matchingRule.title || 'Brand Suggestion');
+        span.setAttribute('data-explanation', matchingRule.explanation);
+        
+        const afterNode = document.createTextNode(afterText);
+        
+        parent.insertBefore(beforeNode, node);
+        parent.insertBefore(span, node);
+        parent.insertBefore(afterNode, node);
+        parent.removeChild(node);
+        
+        // Recurse ONLY on the newly created afterNode representing the remaining un-scanned text.
+        // This guarantees strict forward progress and prevents maximum call stack issues.
+        highlightTextNode(afterNode, activeRules);
+      }
+    }
+
+    // Tooltip popup mapping relative to clicked highlight elements
+    function setupMapClickInteractions() {
+      copyEditor.querySelectorAll('.hl-plain-english, .hl-inclusivity, .hl-tone, .hl-spelling, .hl-length').forEach(elem => {
+        elem.onclick = function(e) {
+          e.stopPropagation();
+          showTooltipForElement(elem);
+        };
+      });
+    }
+
+    function showTooltipForElement(elem) {
+      const tooltip = document.getElementById('highlightTooltip');
+      const category = elem.getAttribute('data-category');
+      const title = elem.getAttribute('data-title');
+      const explanation = elem.getAttribute('data-explanation');
+      const suggestion = elem.getAttribute('data-suggestion');
+      
+      document.getElementById('tooltipCategory').textContent = category.replace('-', ' ');
+      document.getElementById('tooltipTitle').textContent = title;
+      document.getElementById('tooltipExplanation').textContent = explanation;
+      
+      const catBadge = document.getElementById('tooltipCategory');
+      catBadge.className = "text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded";
+      if (category === 'inclusivity') {
+        catBadge.classList.add('bg-rose-100', 'text-rose-700');
+      } else if (category === 'tone') {
+        catBadge.classList.add('bg-purple-100', 'text-brand-purple');
+      } else if (category === 'spelling') {
+        catBadge.classList.add('bg-blue-100', 'text-brand-blue');
+      } else {
+        catBadge.classList.add('bg-amber-100', 'text-amber-700');
+      }
+
+      const actionsContainer = document.getElementById('tooltipActions');
+      actionsContainer.innerHTML = '';
+      if (suggestion) {
+        const fixBtn = document.createElement('button');
+        fixBtn.className = "bg-brand-gold hover:bg-brand-gold-soft text-brand-purple font-extrabold text-[11px] px-3 py-1.5 rounded-lg transition-all shadow-sm";
+        fixBtn.textContent = `Replace with: "${suggestion}"`;
+        fixBtn.onclick = function() {
+          const originalText = elem.textContent;
+          applyManualFix(originalText, suggestion);
+          closeTooltip();
+        };
+        actionsContainer.appendChild(fixBtn);
+      } else {
+        // Render a helpful notice for unfixable issues
+        const manualNote = document.createElement('span');
+        manualNote.className = "text-[10px] text-slate-400 italic flex items-center gap-1 font-medium py-1";
+        manualNote.innerHTML = `
+          <svg class="w-3.5 h-3.5 text-brand-gold animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+          Manual adjustment required
+        `;
+        actionsContainer.appendChild(manualNote);
+      }
+      
+      tooltip.classList.remove('hidden');
+      const elemRect = elem.getBoundingClientRect();
+      const top = elemRect.bottom + window.scrollY + 6;
+      const left = Math.min(window.innerWidth - 300, Math.max(16, elemRect.left + window.scrollX - 40));
+      
+      tooltip.style.top = `${top}px`;
+      tooltip.style.left = `${left}px`;
+    }
+
+    // Clipboard helpers & popup layout managers
+    function closeTooltip() {
+      const tooltip = document.getElementById('highlightTooltip');
+      tooltip.classList.add('hidden');
+    }
+
+    // Word paste cleanup helper: preserves H1/H2, paragraphs, bolding, lists, and links but discards inline style tags
+    function handleSanitizedPaste(e) {
+      e.preventDefault();
+      const html = e.clipboardData.getData('text/html');
+      const plainText = e.clipboardData.getData('text/plain');
+      
+      if (html) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        
+        // Sanitize styling attributes recursively
+        function cleanNode(node) {
+          if (node.nodeType === 1) { // Element node
+            node.removeAttribute('style');
+            node.removeAttribute('class');
+            node.removeAttribute('font');
+            node.removeAttribute('face');
+            
+            // Keep structures clean, convert divs to simple breaks or spans if needed
+            const allowedTags = ['P', 'UL', 'OL', 'LI', 'H1', 'H2', 'H3', 'H4', 'STRONG', 'EM', 'B', 'I', 'A', 'BR'];
+            if (!allowedTags.includes(node.tagName)) {
+              // Standard text node unwrap handles safe paste fallbacks
+            }
+          }
+          for (let i = 0; i < node.childNodes.length; i++) {
+            cleanNode(node.childNodes[i]);
+          }
+        }
+        
+        cleanNode(doc.body);
+        const cleanHtml = doc.body.innerHTML;
+        document.execCommand('insertHTML', false, cleanHtml);
+      } else {
+        document.execCommand('insertText', false, plainText);
+      }
+      runAudit();
+      applyLiveHighlights();
+    }
+
+    // Loading templates helper
+    function loadTemplate(key) {
+      if (TEMPLATES[key]) {
+        copyEditor.innerHTML = TEMPLATES[key];
+        runAudit();
+        applyLiveHighlights();
+      }
+    }
+
+    // Swapping filters
+    function setAuditFilter(category) {
+      currentFilter = category;
+      ['all', 'inclusivity', 'tone', 'plain-english', 'spelling'].forEach(cat => {
+        const btn = document.getElementById(`filterBtn-${cat}`);
+        if (cat === category) {
+          btn.className = "text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-900 text-white transition-all";
+        } else {
+          btn.className = "text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all";
+        }
+      });
+      renderSuggestions();
+    }
+
+    // CORE AUDITOR ENGINE
+    function runAudit() {
+      // Calculate indicators based on clean plain innerText representation
+      const text = copyEditor.innerText || copyEditor.textContent || '';
+      
+      // Update counters
+      charCount.textContent = `${text.length} characters`;
+      const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+      wordCount.textContent = `${words.length} words`;
+
+      currentAuditResults = [];
+      let positiveCount = 0;
+
+      if (!text.trim()) {
+        scoreText.textContent = "100";
+        updateScoreCircle(100);
+        positiveFeedbackCount.textContent = "0";
+        issuesCount.textContent = "0";
+        suggestionsBadge.textContent = "0 found";
+        suggestionsList.innerHTML = `
+          <div class="text-center py-10 text-slate-400 text-sm">
+            <svg class="w-12 h-12 text-slate-200 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+            No draft copy typed yet. Let's write or select a test template to audit!
+          </div>
+        `;
+        return;
+      }
+
+      // Check regex RULES
+      RULES.forEach((rule, idx) => {
+        const matches = text.match(rule.pattern);
+        if (matches) {
+          matches.forEach(match => {
+            currentAuditResults.push({
+              id: `rule-${idx}`,
+              match: match,
+              rule: rule
+            });
+          });
+        }
+      });
+
+      // Sentence Length Check
+      const paragraphs = text.split(/\n+/);
+      paragraphs.forEach(para => {
+        const sentenceRegex = /[^.!?\s][^.!?]*(?:[.!?]+|\s*$)/g;
+        let match;
+        while ((match = sentenceRegex.exec(para)) !== null) {
+          if (match.index === sentenceRegex.lastIndex) {
+            sentenceRegex.lastIndex++;
+          }
+          const sentenceText = match[0].trim();
+          const sentenceWords = sentenceText.split(/\s+/).filter(w => w.length > 0);
+          if (sentenceWords.length > 22) {
+            const matchSnippet = sentenceWords.slice(0, 5).join(' ');
+            currentAuditResults.push({
+              id: `length-${sentenceWords.slice(0,2).join('-')}`,
+              match: matchSnippet,
+              rule: {
+                category: "length",
+                title: "Very long sentence",
+                explanation: `This sentence has ${sentenceWords.length} words. Our guidelines state that keeping sentences under 20-22 words keeps reading level accessible for all backgrounds. Try breaking this into smaller, one-idea sentences.`,
+                replacement: null,
+                severity: "warning"
+              }
+            });
+          }
+        }
+      });
+
+      // Platform & Formatting Specific Checks
+      const platform = channelSelector.value;
+      
+      // Hashtags checks for Social platforms
+      if (platform === 'linkedin' || platform === 'instagram') {
+        const hashtags = text.match(/#\w+/g);
+        if (hashtags) {
+          hashtags.forEach(tag => {
+            const isCamelCase = /[A-Z]/.test(tag.slice(1)) && /[a-z]/.test(tag.slice(1));
+            if (!isCamelCase) {
+              const rawWord = tag.slice(1);
+              let suggest = "#" + rawWord.charAt(0).toUpperCase() + rawWord.slice(1).toLowerCase();
+              currentAuditResults.push({
+                id: `tag-format-${tag}`,
+                match: tag,
+                rule: {
+                  category: "inclusivity",
+                  title: "Non-CamelCase hashtag",
+                  explanation: `CamelCase hashtags like ${suggest} let screen-readers differentiate words easily, ensuring disabled people hear each word properly.`,
+                  replacement: suggest,
+                  severity: "warning"
+                }
+              });
+            }
+          });
+
+          if (platform === 'linkedin' && hashtags.length > 4) {
+            currentAuditResults.push({
+              id: `tag-limit-linkedin`,
+              match: `${hashtags.length} hashtags used`,
+              rule: {
+                category: "tone",
+                title: "Too many hashtags",
+                explanation: "Keep LinkedIn posts light and highly focused on one call-to-action. Too many hashtags clutter the layout and diminish premium positioning.",
+                replacement: null,
+                severity: "warning"
+              }
+            });
+          }
+        }
+      }
+
+      // Check generic CTAs
+      const genericCtas = ["click here", "read more", "link in bio", "click the link"];
+      genericCtas.forEach(cta => {
+        const regex = new RegExp(`\\b${cta}\\b`, 'gi');
+        if (regex.test(text)) {
+          currentAuditResults.push({
+            id: `cta-generic-${cta}`,
+            match: text.match(regex)[0],
+            rule: {
+              category: "inclusivity",
+              title: "Generic link text",
+              explanation: "Screen readers skip directly between links. Use meaningful action language describing the link target (e.g., 'explore our software vacancy' instead of 'click here').",
+              replacement: "visit our careers page",
+              severity: "warning"
+            }
+          });
+        }
+      });
+
+      // Emoji spam check
+      const emojiRegex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F170}-\u{1F251}]/gu;
+      const emojis = text.match(emojiRegex);
+      if (emojis && emojis.length > 3) {
+        currentAuditResults.push({
+          id: `emoji-limit`,
+          match: `Spam of ${emojis.length} emojis`,
+          rule: {
+            category: "inclusivity",
+            title: "Emoji overload",
+            explanation: "Sparing emoji use only. Screen readers read every emoji's alternative text aloud (e.g., 'smiling face with open mouth' five times), which degrades experiences.",
+            replacement: null,
+            severity: "warning"
+          }
+        });
+      }
+
+      // POSITIVE EMOTIONAL/COACH ENERGY TRIGGERS
+      POSITIVE_TRIGGERS.forEach(trigger => {
+        const regex = new RegExp(`\\b${trigger.term}\\b`, 'gi');
+        const matches = text.match(regex);
+        if (matches) {
+          positiveCount += matches.length * trigger.weight;
+        }
+      });
+
+      // Calculate Alignment Score
+      let score = 100;
+      currentAuditResults.forEach(item => {
+        if (item.rule.severity === 'critical') {
+          score -= 10;
+        } else {
+          score -= 5;
+        }
+      });
+
+      score += Math.min(15, Math.floor(positiveCount / 1.5));
+      score = Math.max(0, Math.min(100, score));
+
+      // Update metrics interface
+      scoreText.textContent = score;
+      updateScoreCircle(score);
+      positiveFeedbackCount.textContent = positiveCount;
+      issuesCount.textContent = currentAuditResults.length;
+
+      // Render suggestions based on current active filter tab
+      renderSuggestions();
+    }
+
+    // SVG Score Circle Renderer
+    function updateScoreCircle(score) {
+      const offset = 251.2 - (score / 100) * 251.2;
+      scoreProgress.setAttribute('stroke-dashoffset', offset);
+      
+      if (score >= 85) {
+        scoreProgress.setAttribute('stroke', '#1C805C');
+        scoreText.className = "text-3xl font-extrabold text-brand-green";
+      } else if (score >= 60) {
+        scoreProgress.setAttribute('stroke', '#FFC628');
+        scoreText.className = "text-3xl font-extrabold text-brand-gold-soft";
+      } else {
+        scoreProgress.setAttribute('stroke', '#ED4A76');
+        scoreText.className = "text-3xl font-extrabold text-brand-coral";
+      }
+    }
+
+    // Render suggestion cards
+    function renderSuggestions() {
+      const filtered = currentAuditResults.filter(item => {
+        if (currentFilter === 'all') return true;
+        return item.rule.category === currentFilter;
+      });
+
+      suggestionsBadge.textContent = `${filtered.length} found`;
+
+      if (filtered.length === 0) {
+        suggestionsList.innerHTML = `
+          <div class="text-center py-10 text-slate-500 text-xs">
+            <svg class="w-10 h-10 text-brand-green mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+            No issues found matching this category. Your coach score is looking healthy!
+          </div>
+        `;
+        return;
+      }
+
+      suggestionsList.innerHTML = '';
+      filtered.forEach((item, idx) => {
+        const severityColor = item.rule.severity === 'critical' ? 'border-brand-coral bg-rose-50/50' : 'border-slate-300 bg-white';
+        const badgeColor = item.rule.severity === 'critical' ? 'bg-brand-coral text-white' : 'bg-brand-gold text-brand-purple';
+        
+        // Find occurrence index of this exact match to handle multiple identical terms correctly
+        let occurrenceIndex = 0;
+        for (let i = 0; i < idx; i++) {
+           if (filtered[i].match === item.match && filtered[i].rule.title === item.rule.title) {
+               occurrenceIndex++;
+           }
+        }
+
+        let fixButton = '';
+        if (item.rule.replacement) {
+          const escapedMatch = item.match.replace(/'/g, "\\'");
+          const escapedReplacement = item.rule.replacement.replace(/'/g, "\\'");
+          fixButton = `
+            <button onclick="applyManualFix('${escapedMatch}', '${escapedReplacement}')" class="bg-brand-navy hover:bg-opacity-90 text-white font-bold text-xs px-3 py-1 rounded-lg transition-all flex items-center gap-1 relative z-10">
+              Fix: "${item.rule.replacement}"
+            </button>
+          `;
+        } else {
+          // If the issue requires a manual adjustment, render a distinct warning notice in the sidebar card
+          fixButton = `
+            <span class="text-[10px] text-slate-400 italic flex items-center gap-1 font-medium py-1 bg-slate-50 border border-slate-100 px-2 rounded-lg relative z-10">
+              <svg class="w-3.5 h-3.5 text-brand-gold animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+              Requires manual adjustment
+            </span>
+          `;
+        }
+
+        const card = document.createElement('div');
+        card.className = `p-4 border-l-4 rounded-xl shadow-sm transition-all hover:translate-x-1 cursor-pointer ${severityColor}`;
+        card.innerHTML = `
+          <div class="flex justify-between items-start gap-2 mb-1.5 pointer-events-none">
+            <div>
+              <span class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full ${badgeColor}">
+                ${item.rule.title || 'Brand Rule Warning'}
+              </span>
+              <h4 class="text-xs font-extrabold text-brand-navy mt-1">
+                Found match: <span class="text-brand-coral bg-amber-50 px-1 py-0.5 rounded">"${item.match}"</span>
+              </h4>
+            </div>
+            <span class="text-[10px] text-slate-400 capitalize font-semibold">${item.rule.category.replace('-', ' ')}</span>
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed mb-3 pointer-events-none">${item.rule.explanation}</p>
+          <div class="flex justify-end gap-2">
+            ${fixButton}
+          </div>
+        `;
+
+        card.onclick = function(e) {
+            // Ignore button clicks so we don't trigger a scroll when simply applying an automated fix
+            if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
+            
+            // Ensure editor currently has highlights rendered
+            applyLiveHighlights();
+            
+            // Find matching spans in the unified editor
+            const allSpans = Array.from(copyEditor.querySelectorAll('span[data-title]'));
+            let matchedSpans = allSpans.filter(s => s.getAttribute('data-title') === item.rule.title && s.textContent === item.match);
+            
+            // Get the specific span matching this occurrence instance in the text
+            const targetSpan = matchedSpans[occurrenceIndex] || matchedSpans[0];
+            
+            if (targetSpan) {
+                // Scroll to the specific span within the editor container
+                targetSpan.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Add a visual flash effect to immediately draw the eye to the problem
+                const originalBg = targetSpan.style.backgroundColor;
+                const originalShadow = targetSpan.style.boxShadow;
+                
+                targetSpan.style.transition = 'none';
+                targetSpan.style.backgroundColor = 'rgba(255, 198, 40, 0.9)'; // Hive IT High-visibility gold
+                targetSpan.style.boxShadow = '0 0 0 4px rgba(255, 198, 40, 0.4)';
+                targetSpan.style.borderRadius = '3px';
+                
+                // Smoothly fade out the flash effect
+                setTimeout(() => {
+                    targetSpan.style.transition = 'all 0.8s ease';
+                    targetSpan.style.backgroundColor = originalBg;
+                    targetSpan.style.boxShadow = originalShadow;
+                }, 400);
+                
+                // Automatically open the floating context tooltip for that specific span!
+                showTooltipForElement(targetSpan);
+            }
+        };
+
+        suggestionsList.appendChild(card);
+      });
+    }
+
+    // Instant word replacer directly inside the text nodes of the editable editor container
+    function applyManualFix(findStr, replaceStr) {
+      // Unlink selection
+      saveCaret();
+      unhighlightBrandIssues(copyEditor);
+      replaceTermInTextNodes(copyEditor, findStr, replaceStr);
+      runAudit();
+      applyLiveHighlights(); // Rebuilds the visual UI & restores caret
+    }
+
+    // Helper node-value swapper safeguarding active inline tagging systems
+    function replaceTermInTextNodes(node, findStr, replaceStr) {
+      const regex = new RegExp('\\b' + findStr + '\\b', 'i');
+      const childNodes = Array.from(node.childNodes);
+      for (let child of childNodes) {
+        if (child.nodeType === 3) { // Text node
+          if (regex.test(child.nodeValue)) {
+            child.nodeValue = child.nodeValue.replace(regex, replaceStr);
+          }
+        } else if (child.nodeType === 1) { // Element node
+          // Skip recursing inside highlights to prevent unintended inner parameter replacements
+          if (child.tagName !== 'SCRIPT' && 
+              child.tagName !== 'STYLE' &&
+              child.id !== 'caret-marker' &&
+              !child.classList.contains('hl-plain-english') && 
+              !child.classList.contains('hl-inclusivity') && 
+              !child.classList.contains('hl-tone') && 
+              !child.classList.contains('hl-spelling') && 
+              !child.classList.contains('hl-length')) {
+            replaceTermInTextNodes(child, findStr, replaceStr);
+          }
+        }
+      }
+    }
+
+
+    // 2. GEMINI BRAND CO-PILOT ASSISTANT (API CALLS)
+    
+    // Global retrier helper implementing exponential backoff (RULE constraints)
+    async function makeGeminiApiCall(payload) {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+      const maxRetries = 5;
+      
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+          
+          if (!response.ok) {
+            throw new Error(`HTTP Error Status: ${response.status}`);
+          }
+          
+          return await response.json();
+        } catch (error) {
+          if (attempt === maxRetries) {
+            throw error;
+          }
+          const delay = Math.pow(2, attempt - 1) * 1000; // 1s, 2s, 4s, 8s
+          await new Promise(resolve => setTimeout(resolve, delay));
+        }
+      }
+    }
+
+    // Align Tone Prompt rewrite action
+    async function handleAiRewrite() {
+      const currentText = copyEditor.innerText || copyEditor.textContent || '';
+      if (!currentText.trim()) {
+        showCustomError("Please write or paste some copy in the editor first so our AI Co-Pilot can review it.");
+        return;
+      }
+
+      // Open AI results interface
+      aiWorkspace.classList.remove('hidden');
+      aiLoading.classList.remove('hidden');
+      aiOutputContainer.classList.add('hidden');
+      
+      // Populate original text for side-by-side comparison
+      aiOriginalText.textContent = currentText;
+
+      const systemPrompt = `You are the expert Brand Strategy & Tone of Voice Copilot for Hive IT. Your goal is to rewrite or critique text to align perfectly with Hive IT's Brand Strategy, Tone of Voice, and Inclusive Content guidelines.
+
+      HIVE IT BRAND FOUNDATIONS:
+      - Ambition: Positive, sustainable impact on the environment and communities using inclusive tech.
+      - Purpose: Ethical & inclusive tech for under-resourced sectors (charities, public sector).
+      - Core Voice Pillars: Friendly (warm colleague), Humble (credit others, state outcomes plainly), Empathetic (acknowledge reader first), Inclusive (plain language, no jargon).
+      - Archetype: Underdog Sports Coach (encouraging, optimistic, team-first, quietly confident).
+      - Target Personas:
+        - The Fellowship (Peers/Partners): "Let's build and learn together"
+        - The Squire (Talent/Recruits): "Grow with our squad"
+        - The Hand (Decision-Makers): "Real impact, done ethically"
+
+      RULES TO STRICTLY ENFORCE:
+      1. Plain English: Use simple words (e.g., help instead of assist, use instead of utilize, start instead of commence).
+      2. Tone/Humility: No boasting ("world-class", "market-leading", "best-in-class", "genius", "crushing it"). Credit the team and partner.
+      3. No Corporate Fluff: Avoid "leverage", "synergy", "seamless", "robust solution", "deep dive", "circle back".
+      4. Disability & Ableism: Use GDS person-first rules (e.g., "disabled people", "wheelchair user"). Absolutely NO ableist metaphors ("tone-deaf", "blind eye", "crazy", "crippled by", "falls on deaf ears").
+      5. Visual Formatting: Emojis should be sparing (max 2-3 at the end of lines), CamelCase hashtags at the end of social posts (e.g., #TechForGood, #InclusiveByDesign). Use UK English spelling (organisation, colour, recognise).
+
+      TASK:
+      Analyze and rewrite the following draft text to fit these constraints flawlessly. 
+      Target channel: ${channelSelector.value}
+      Target audience: ${personaSelector.value}
+      Make the response clean. First provide ONLY the fully rewritten, brand-aligned text inside a markdown code block, and then follow it with a brief list of the changes made with encouraging Underdog Coach explanations.`;
+
+      const payload = {
+        contents: [{
+          parts: [{ text: `Here is my current copy draft:\n"${currentText}"` }]
+        }],
+        systemInstruction: {
+          parts: [{ text: systemPrompt }]
+        }
+      };
+
+      try {
+        const result = await makeGeminiApiCall(payload);
+        const textResponse = result.candidates?.[0]?.content?.parts?.[0]?.text;
+        
+        if (textResponse) {
+          aiLoading.classList.add('hidden');
+          aiOutputContainer.classList.remove('hidden');
+          aiResultText.textContent = textResponse;
+        } else {
+          throw new Error("Invalid structure returned from model API.");
+        }
+      } catch (error) {
+        aiLoading.classList.add('hidden');
+        showCustomError(`An error occurred during rewrite alignment: ${error.message}`);
+      }
+    }
+
+    // Trigger customized AI Prompt Generation from scratch
+    async function triggerAiPrompt(type) {
+      aiWorkspace.classList.remove('hidden');
+      aiLoading.classList.remove('hidden');
+      aiOutputContainer.classList.add('hidden');
+
+      let queryText = "";
+      if (type === 'careers') {
+        queryText = "Generate a recruitment post for Hive IT. We are looking for a trainee/placement student to join our digital team for the summer. Emphasize team mentorship, employee well-being, Sheffield digital community connections, and ensure zero barriers to entry. Tailor this for the 'The Squire' talent persona on LinkedIn and Instagram.";
+      } else {
+        queryText = "Generate an impact post for Hive IT celebrating our new carbon-neutral operations workflow audit. We worked with a consultant to lower our greenhouse impact and want to share what we learned so other agencies can do the same. Tailor this for 'The Hand' (ethical leaders) and 'The Fellowship' (peer groups) on LinkedIn.";
+      }
+      
+      // Populate original text to show the generated prompt
+      aiOriginalText.textContent = `[Auto-Generated Prompt]\n\n${queryText}`;
+
+      const systemPrompt = `You are the expert Brand Strategy & Tone of Voice Copilot for Hive IT. Your goal is to rewrite or critique text to align perfectly with Hive IT's Brand Strategy, Tone of Voice, and Inclusive Content guidelines.
+
+      HIVE IT BRAND FOUNDATIONS:
+      - Ambition: Positive, sustainable impact on the environment and communities using inclusive tech.
+      - Purpose: Ethical & inclusive tech for under-resourced sectors (charities, public sector).
+      - Core Voice Pillars: Friendly (warm colleague), Humble (credit others, state outcomes plainly), Empathetic (acknowledge reader first), Inclusive (plain language, no jargon).
+      - Archetype: Underdog Sports Coach (encouraging, optimistic, team-first, quietly confident).
+
+      RULES TO STRICTLY ENFORCE:
+      1. Plain English: Use simple words (e.g., help instead of assist, use instead of utilize, start instead of commence).
+      2. Tone/Humility: No boasting ("world-class", "market-leading", "best-in-class", "genius", "crushing it"). Credit the team and partner.
+      3. No Corporate Fluff: Avoid "leverage", "synergy", "seamless", "robust solution", "deep dive", "circle back".
+      4. Disability & Ableism: Use GDS person-first rules (e.g., "disabled people", "wheelchair user"). Absolutely NO ableist metaphors ("tone-deaf", "blind eye", "crazy", "crippled by", "falls on deaf ears").
+      5. Visual Formatting: Emojis should be sparing (max 2-3 at the end of lines), CamelCase hashtags at the end of social posts (e.g., #TechForGood, #InclusiveByDesign). Use UK English spelling (organisation, colour, recognise).
+
+      TASK: Generate fresh, beautiful copy based on user's query. Provide the post first inside a code block, then add bullet points indicating why this is perfectly on-brand.`;
+
+      const payload = {
+        contents: [{
+          parts: [{ text: queryText }]
+        }],
+        systemInstruction: {
+          parts: [{ text: systemPrompt }]
+        }
+      };
+
+      try {
+        const result = await makeGeminiApiCall(payload);
+        const textResponse = result.candidates?.[0]?.content?.parts?.[0]?.text;
+        
+        if (textResponse) {
+          aiLoading.classList.add('hidden');
+          aiOutputContainer.classList.remove('hidden');
+          aiResultText.textContent = textResponse;
+        } else {
+          throw new Error("Invalid API response format.");
+        }
+      } catch (error) {
+        aiLoading.classList.add('hidden');
+        showCustomError(`Could not generate template draft: ${error.message}`);
+      }
+    }
+
+    // Applying result to main textarea, converting plain content to standard formatted paragraphs automatically
+    function applyAiDraft() {
+      const content = aiResultText.textContent;
+      let cleanContent = '';
+      
+      const codeBlockRegex = new RegExp('\\x60\\x60\\x60(?:[a-zA-Z]+)?\\s*([\\s\\S]*?)\\s*\\x60\\x60\\x60');
+      const match = content.match(codeBlockRegex);
+      if (match && match[1]) {
+        cleanContent = match[1].trim();
+      } else {
+        cleanContent = content.trim();
+      }
+      
+      // Auto build structures
+      const formattedHtml = cleanContent.split('\n\n').map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+      copyEditor.innerHTML = formattedHtml;
+      
+      aiWorkspace.classList.add('hidden');
+      runAudit();
+      applyLiveHighlights();
+    }
+
+    // Clipboard copy mechanism utilizing fallback (RULE: Avoid standard writeText due to iframe boundaries)
+    function copyAiText() {
+      let textToCopy = aiResultText.textContent;
+      const codeBlockRegex = new RegExp('\\x60\\x60\\x60(?:[a-zA-Z]+)?\\s*([\\s\\S]*?)\\s*\\x60\\x60\\x60');
+      const match = textToCopy.match(codeBlockRegex);
+      if (match && match[1]) {
+        textToCopy = match[1].trim();
+      }
+
+      const tempTextArea = document.createElement("textarea");
+      tempTextArea.value = textToCopy;
+      tempTextArea.style.position = "fixed";
+      tempTextArea.style.top = "0";
+      tempTextArea.style.left = "0";
+      tempTextArea.style.opacity = "0";
+      document.body.appendChild(tempTextArea);
+      
+      tempTextArea.focus();
+      tempTextArea.select();
+      
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          copyAiResult.textContent = "Copied! ✓";
+          copyAiResult.className = "bg-brand-green text-white text-xs px-3 py-1.5 rounded-lg transition-all";
+          setTimeout(() => {
+            copyAiResult.textContent = "Copy Copy";
+            copyAiResult.className = "bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3 py-1.5 rounded-lg border border-slate-700 transition-all";
+          }, 2000);
+        }
+      } catch (err) {
+        console.error('Fallback copy command failed', err);
+      }
+      
+      document.body.removeChild(tempTextArea);
+    }
+
+    // Non-alert-based UI error messenger
+    function showCustomError(msg) {
+      let banner = document.getElementById('customErrorBanner');
+      if (!banner) {
+        banner = document.createElement('div');
+        banner.id = 'customErrorBanner';
+        banner.className = 'fixed bottom-4 left-4 right-4 md:left-auto md:w-96 bg-rose-600 text-white p-4 rounded-xl shadow-xl z-50 flex items-start gap-2.5 transition-all duration-300';
+        document.body.appendChild(banner);
+      }
+      banner.innerHTML = `
+        <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+        <div>
+          <h4 class="font-bold text-xs">Correction Alert</h4>
+          <p class="text-xs text-rose-100 mt-0.5 leading-normal">${msg}</p>
+        </div>
+      `;
+      
+      setTimeout(() => {
+        if (banner && banner.parentNode) {
+          banner.parentNode.removeChild(banner);
+        }
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
