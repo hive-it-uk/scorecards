@@ -787,8 +787,11 @@ footer .meth-trigger:hover{color:#fff}
 .cmp-pick{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.6rem;margin-top:1rem}
 .cmp-pick label{font-size:.78rem;font-weight:700;display:block;margin-bottom:.2rem}
 .cmp-pick select{width:100%}
-.radar-wrap{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1.2rem}
-@media(min-width:760px){.radar-wrap{grid-template-columns:1.2fr 1fr}}
+.cmp-grid{display:flex;flex-direction:column;border:var(--bdr);box-shadow:5px 5px 0 var(--ink);margin-top:1.2rem}
+.radar-card{padding:1.2rem;border-bottom:var(--bdr)}
+.cmp-tbl-card{padding:1.2rem;overflow-x:auto}
+.cmp-empty{font-size:.82rem;color:rgba(14,20,40,.62);font-style:italic;padding:2rem;text-align:center}
+@media(min-width:760px){.cmp-grid{flex-direction:row}.radar-card{flex:0 0 54%;border-right:var(--bdr);border-bottom:none}.cmp-tbl-card{flex:1}}
 .radar-legend{display:flex;flex-direction:column;gap:.4rem;font-size:.82rem}
 .radar-key{display:flex;align-items:center;gap:.5rem}
 .radar-sw{width:1rem;height:1rem;border:2px solid var(--ink);flex:none}
@@ -1065,18 +1068,18 @@ footer .meth-trigger:hover{color:#fff}
 
 <!-- ============ VIEW: COMPARE ============ -->
 <section id="view-cmp" role="tabpanel" aria-labelledby="tab-cmp" hidden>
- <div class="section-intro"><h2>Compare</h2><p>Pick up to three technologies to compare across all thirteen criteria. The radar shows the shape of each; the table gives the exact scores and evidence quality.</p></div>
+ <div class="section-intro"><h2>Compare</h2><p>Pick up to four technologies to compare across all thirteen criteria. The radar shows the shape of each — hover or focus a point for its score — and the table beside it gives the exact scores and assurance levels.</p></div>
  <div class="wrap">
   <div class="cmp-pick">
    <div><label for="cmp0">First</label><select id="cmp0"></select></div>
    <div><label for="cmp1">Second</label><select id="cmp1"></select></div>
    <div><label for="cmp2">Third</label><select id="cmp2"></select></div>
+   <div><label for="cmp3">Fourth</label><select id="cmp3"></select></div>
   </div>
-  <div class="radar-wrap">
-   <div id="radar-host"></div>
-   <div class="radar-legend" id="radar-legend"></div>
+  <div class="cmp-grid">
+   <div class="radar-card"><div id="radar-host"></div><div class="radar-legend" id="radar-legend"></div></div>
+   <div class="cmp-tbl-card"><div id="cmp-table-host"></div></div>
   </div>
-  <div id="cmp-table-host"></div>
  </div>
 </section>
 
@@ -1984,8 +1987,8 @@ function fmtNum(n){
 }
 
 // ---- comparison + radar ----
-let cmp=[null,null,null];
-const CMP_COLOURS=["var(--pal)","var(--lap)","var(--grn)"];
+let cmp=[null,null,null,null];
+const CMP_COLOURS=["var(--pal)","var(--lap)","var(--grn)","#c2410c"];
 function cmpCount(){return cmp.filter(Boolean).length;}
 function updateCmpBanner(){
   const n=cmpCount();const b=document.getElementById("cmp-banner");const t=document.getElementById("cmp-banner-text");
@@ -1993,30 +1996,30 @@ function updateCmpBanner(){
   if(n>0){b.classList.add("visible");t.textContent=n+" "+(n===1?"technology":"technologies")+" in comparison";}
   else b.classList.remove("visible");
 }
-function addCmp(id){const i=cmp.indexOf(null);if(cmp.includes(id))return;if(i>=0)cmp[i]=id;else cmp[2]=id;syncCmpSelects();cmpRender();updateCmpBanner();}
+function addCmp(id){const i=cmp.indexOf(null);if(cmp.includes(id))return;if(i>=0)cmp[i]=id;else cmp[3]=id;syncCmpSelects();cmpRender();updateCmpBanner();}
 function toggleCmp(id){
   if(cmp.includes(id)){cmp=cmp.map(x=>x===id?null:x);}
-  else{const i=cmp.indexOf(null);if(i<0){alert("You can compare up to three technologies at once. Remove one first.");return;}cmp[i]=id;}
+  else{const i=cmp.indexOf(null);if(i<0){alert("You can compare up to four technologies at once. Remove one first.");return;}cmp[i]=id;}
   syncCmpSelects();cmpRender();updateCmpBanner();render();
 }
 function initCmp(){
-  [0,1,2].forEach(i=>{const sel=$("#cmp"+i);sel.append(new Option("None",""));
+  cmp.forEach((_,i)=>{const sel=$("#cmp"+i);if(!sel)return;sel.append(new Option("None",""));
     Object.keys(CATS).forEach(cat=>{const og=document.createElement("optgroup");og.label=CATS[cat];
       PROV.filter(p=>p.category===cat).sort((a,b)=>a.name.localeCompare(b.name)).forEach(p=>og.append(new Option(p.name,p.id)));sel.append(og);});
     sel.addEventListener("change",()=>{cmp[i]=sel.value||null;cmpRender();updateCmpBanner();render();});
   });
 }
-function syncCmpSelects(){[0,1,2].forEach(i=>{$("#cmp"+i).value=cmp[i]||"";});}
+function syncCmpSelects(){cmp.forEach((v,i)=>{const s=$("#cmp"+i);if(s)s.value=v||"";});}
 function cmpRender(){
   const sel=cmp.map(id=>id?PROV.find(p=>p.id===id):null);
   drawRadar(sel);
   // legend
-  $("#radar-legend").innerHTML=sel.map((p,i)=>p?`<div class="radar-key"><span class="radar-sw" style="background:${CMP_COLOURS[i]}"></span><strong>${p.name}</strong> — ${score(p).pct}/100</div>`:"").join("")
+  const chosen=sel.filter(Boolean);
+  $("#radar-legend").innerHTML=chosen.map((p,i)=>`<div class="radar-key"><span class="radar-sw" style="background:${CMP_COLOURS[sel.indexOf(p)]}"></span><strong>${p.name}</strong> — ${score(p).pct}/100</div>`).join("")
     || '<p class="note-inline">Pick technologies above to compare.</p>';
   // table
   const host=$("#cmp-table-host");
-  const chosen=sel.filter(Boolean);
-  if(!chosen.length){host.innerHTML="";return;}
+  if(!chosen.length){host.innerHTML='<p class="cmp-empty">Choose technologies to see their scores side by side.</p>';return;}
   let h='<table class="cmp-table"><caption>Scores by criterion (0–4) with assurance level</caption><thead><tr><th scope="col">Criterion</th>'+chosen.map(p=>`<th scope="col">${p.flag} ${p.name}</th>`).join("")+'</tr></thead><tbody>';
   for(const c of CRITS){
     h+=`<tr><th scope="row">${c.num}. ${c.name}</th>`+chosen.map(p=>{const cell=getCell(p,c.id);return `<td><strong>${cell.s}</strong><br><span class="conf-tag">${cell.conf}</span></td>`;}).join("")+`</tr>`;
@@ -2026,20 +2029,47 @@ function cmpRender(){
 }
 function drawRadar(sel){
   const host=$("#radar-host");const n=CRITS.length;const size=420,cx=size/2,cy=size/2,R=size*0.36;
-  const NS="http://www.w3.org/2000/svg";
-  let svg=`<svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Radar chart comparing selected technologies across thirteen criteria. Exact values are in the table below." style="width:100%;height:auto;border:var(--bdr);background:var(--wht)">`;
+  const chosen=sel.filter(Boolean);
+  if(!chosen.length){host.innerHTML='<p class="cmp-empty">Pick technologies above to compare them here.</p>';return;}
+  let svg=`<svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Radar chart comparing selected technologies across thirteen criteria. A data table with the same values follows." style="width:100%;height:auto;border:var(--bdr);background:var(--wht)"><title>Technology comparison radar</title>`;
   // grid rings
   for(let r=1;r<=4;r++){let pts="";for(let i=0;i<n;i++){const a=-Math.PI/2+i*2*Math.PI/n;pts+=`${cx+Math.cos(a)*R*r/4},${cy+Math.sin(a)*R*r/4} `;}svg+=`<polygon points="${pts}" fill="none" stroke="#ccc" stroke-width="1"/>`;}
-  // axes + labels
+  // axes + numeric labels
   for(let i=0;i<n;i++){const a=-Math.PI/2+i*2*Math.PI/n;const x=cx+Math.cos(a)*R,y=cy+Math.sin(a)*R;
     svg+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#bbb" stroke-width="1"/>`;
     const lx=cx+Math.cos(a)*(R+18),ly=cy+Math.sin(a)*(R+18);
     svg+=`<text x="${lx}" y="${ly}" font-size="9" font-weight="700" text-anchor="middle" dominant-baseline="middle" fill="#0e1428">${CRITS[i].num}</text>`;}
-  // data polygons
-  sel.forEach((p,idx)=>{if(!p)return;let pts="";for(let i=0;i<n;i++){const cell=getCell(p,CRITS[i].id);let s=cell.s;const a=-Math.PI/2+i*2*Math.PI/n;const rr=R*s/4;pts+=`${cx+Math.cos(a)*rr},${cy+Math.sin(a)*rr} `;}
-    svg+=`<polygon points="${pts}" fill="${CMP_COLOURS[idx]}" fill-opacity="0.18" stroke="${CMP_COLOURS[idx]}" stroke-width="2.5"/>`;});
-  svg+=`</svg><p class="note-inline">Axis numbers are criteria 1–13 (see the table for names). Radius = score 0–4.</p>`;
-  host.innerHTML=svg;
+  // data polygons (under dots)
+  sel.forEach((p,idx)=>{if(!p)return;let pts="";for(let i=0;i<n;i++){const cell=getCell(p,CRITS[i].id);const a=-Math.PI/2+i*2*Math.PI/n;const rr=R*cell.s/4;pts+=`${cx+Math.cos(a)*rr},${cy+Math.sin(a)*rr} `;}
+    svg+=`<polygon points="${pts}" fill="${CMP_COLOURS[idx]}" fill-opacity="0.16" stroke="${CMP_COLOURS[idx]}" stroke-width="2.5"/>`;});
+  // dots + invisible hit areas for hover/focus tooltips
+  sel.forEach((p,idx)=>{if(!p)return;const col=CMP_COLOURS[idx];
+    for(let i=0;i<n;i++){const cell=getCell(p,CRITS[i].id);const a=-Math.PI/2+i*2*Math.PI/n;const rr=R*cell.s/4;
+      const px=cx+Math.cos(a)*rr,py=cy+Math.sin(a)*rr;
+      svg+=`<circle cx="${px}" cy="${py}" r="4" fill="${col}" stroke="#fff" stroke-width="1.5"/>`;
+      svg+=`<circle class="radar-hit" data-tip="cmp-tip" data-label="${CRITS[i].num}. ${CRITS[i].name}" data-prov="${p.name}" data-raw="${cell.s}" data-conf="${cell.conf}" cx="${px}" cy="${py}" r="12" tabindex="0" role="img" aria-label="${p.name} — ${CRITS[i].name}: ${cell.s} out of 4 (${cell.conf})"/>`;
+    }});
+  svg+=`</svg>`;
+  host.innerHTML=`<div class="radar-wrap">${svg}<div class="radar-tip" id="cmp-tip" role="tooltip" aria-live="polite"></div></div><p class="note-inline">Axis numbers are criteria 1–13 (see the table for names). Radius = score 0–4. Hover or focus a point for its score.</p>`;
+  initRadarTips();
+}
+function initRadarTips(){
+  document.querySelectorAll('.radar-hit').forEach(el=>{
+    const show=()=>{
+      const tip=document.getElementById(el.dataset.tip);if(!tip)return;
+      tip.innerHTML=`${el.dataset.prov}<br>${el.dataset.label}<br><span class="tip-score">${el.dataset.raw}/4</span> <span style="opacity:.7;font-weight:400">(${el.dataset.conf})</span>`;
+      const svg=el.closest('svg'),wrap=el.closest('.radar-wrap');if(!svg||!wrap)return;
+      const svgR=svg.getBoundingClientRect(),wrapR=wrap.getBoundingClientRect();
+      const cx2=parseFloat(el.getAttribute('cx')),cy2=parseFloat(el.getAttribute('cy'));
+      const vb=svg.viewBox.baseVal;const sx=svgR.width/vb.width,sy=svgR.height/vb.height;
+      tip.style.left=((cx2*sx)+(svgR.left-wrapR.left)+10)+'px';
+      tip.style.top=((cy2*sy)+(svgR.top-wrapR.top)-10)+'px';
+      tip.classList.add('visible');
+    };
+    const hide=()=>{const tip=document.getElementById(el.dataset.tip);if(tip)tip.classList.remove('visible');};
+    el.addEventListener('mouseenter',show);el.addEventListener('mouseleave',hide);
+    el.addEventListener('focus',show);el.addEventListener('blur',hide);
+  });
 }
 
 // ---- about ----
